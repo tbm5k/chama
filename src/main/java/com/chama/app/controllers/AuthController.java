@@ -1,4 +1,4 @@
-package com.chama.app;
+package com.chama.app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(){
-        return "login";
+        return "Blanktemplates/login";
     }
 
 }
