@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/authentication/blank}">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -12,8 +13,19 @@
         <title>Login</title>
     </head>
     <body>
-        <div class="container login">
-            <div layout:fragment="login"></div>
+        <div layout:fragment="content">
+            <form style="width:350px;" class="container border rounded px-5 py-3">
+                <h2>Chama</h2>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
     </body>
 </html>

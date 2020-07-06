@@ -8,7 +8,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(){
-        return "/layouts/blank";
+        return "fragments/authentication/login";
     }
 
 }
