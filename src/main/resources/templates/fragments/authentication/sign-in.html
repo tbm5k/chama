@@ -10,7 +10,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <title>Login</title>
+        <title>Sign in</title>
     </head>
     <body>
         <div layout:fragment="content">
@@ -23,6 +23,8 @@
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
                     <input type="password" class="form-control" id="inputPassword">
+                    <p><a th:href="@{/signup}">Create account</a></p>
+                    <p><a th:href="@{/resetPassword}">Forgot password</a></p>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
