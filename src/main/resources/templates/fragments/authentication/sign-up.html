@@ -2,28 +2,36 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/authentication/blank}">
+      layout:decorate="~{layouts/blank}">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <title>Sign up</title>
     </head>
     <body>
         <div layout:fragment="content">
-            <form style="width:350px;" class="container border rounded px-5 py-3">
+            <form th:action="@{/signup}" method="post" th:object="${user}" style="width:350px;" class="container border rounded px-5 py-3">
                 <h2>Sign Up</h2>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" class="form-control" type="text" placeholder="Enter Email" required>
+                    <label for="firstName">First name</label>
+                    <input id="firstName" th:field="*{firstName}" class="form-control" type="text" placeholder="First name" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="psw">Password</label>
-                    <input id="psw" class="form-control" type="password" placeholder="Enter Password" required>
+                    <label for="lastName">Last name</label>
+                    <input id="lastName" th:field="*{lastName}" class="form-control" type="text" placeholder="Last name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{email}" class="form-control" type="text" placeholder="Enter Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" th:field="*{password}" class="form-control" type="password" placeholder="Enter Password" required>
                 </div>
 
                 <div class="form-group">
