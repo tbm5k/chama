@@ -1,4 +1,4 @@
-package com.chama.app;
+package com.chama.app.services;
 
 import com.chama.app.models.User;
 import com.chama.app.repository.UserRepo;
@@ -13,4 +13,5 @@ public class UserService {
     public void addNewUser(User user) {
         userRepo.save(user);
     }
+
 }
