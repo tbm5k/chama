@@ -38,8 +38,9 @@
 
                 <button type="submit" class="btn btn-primary">Sign Up</button>
 
-                <div th:if="${success}" th:text="${success}"></div>
+                <div th:if="${message}" th:text="${message}"></div>
                 <div th:if="${error}" th:text="${error}"></div>
+                <div th:if="${success}" th:text="${success}"></div>
 
             </form>
 
