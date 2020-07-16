@@ -28,6 +28,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" th:field="*{email}" class="form-control" type="text" placeholder="Enter Email" required>
+                    <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
                 </div>
 
                 <div class="form-group">
@@ -37,8 +38,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Sign Up</button>
-                <p th:if="${success}" th:text="${success}"></p>
-                <p th:if="${error}" th:text="${error}"></p>
+                <div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
+
             </form>
 
         </div>
