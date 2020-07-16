@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class AuthController {
     @Autowired
     UserRepo userRepo;
 
-    @GetMapping("/")
+    @GetMapping("/sign-in")
     public String loginPage(){
         return "fragments/authentication/sign-in";
     }
@@ -34,21 +35,16 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    public String addNewUser(@ModelAttribute User user, BindingResult result, Model model){
+    public String addNewUser(User user, Model model){
+
         User userExists = userRepo.findByEmail(user.getEmail());
 
-        if(result.hasErrors()){
-            model.addAttribute("message", "Correct the errors in the form");
-        }
-        if(userExists != null){
-            model.addAttribute("error","user already exists");
-            //redirectAttributes.addFlashAttribute("Error", "User exists");
-        }else{
+        if(userRepo.findByEmail(user.getEmail()) != null){
+            model.addAttribute("error","Email exists");
+        } else{
             userService.addNewUser(user);
             model.addAttribute("success","Account created");
-            //redirectAttributes.addFlashAttribute("Success", "Account created");
         }
-
         return "fragments/authentication/sign-up";
     }
 
