@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Create Chama</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/chama}" th:object="${chama}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
+        <h2>Create Chama</h2>
+        <div class="form-group">
+            <label for="chama">Chama name</label>
+            <input type="text" class="form-control" id="chama" placeholder="Changa chama">
+            <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
+    </form>
+</div>
+</body>
+</html>
