@@ -12,12 +12,16 @@
     </head>
     <body>
         <div layout:fragment="content">
-            <form method="post" th:action="@{/}">
+            <form method="post" th:action="@{/otpValidation}" style="width:350px;" class="container border rounded px-5 py-3">
                 <h2>Validation</h2>
                 <div>
                     <label for="optValidation">Enter the code sent to your email</label>
                     <input id="optValidation" class="form-control" type="number" placeholder="6516" required>
+                    <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
                 </div>
+                <button type="submit" class="btn btn-primary">Validate</button>
+                <div th:if="${valid}" th:text="${valid}" class="alert alert-success" role="alert"></div>
+
             </form>
         </div>
     </body>
