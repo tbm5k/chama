@@ -34,11 +34,12 @@ public class AuthController {
 
         if(userRepo.findByEmail(user.getEmail()) != null){
             model.addAttribute("error","Email exists");
+            return "fragments/authentication/sign-up";
         } else{
             userService.addNewUser(user);
             model.addAttribute("success","Account created");
+            return "redirect:generateOtp";
         }
-        return "fragments/authentication/sign-up";
     }
 
     @GetMapping("/resetPassword")

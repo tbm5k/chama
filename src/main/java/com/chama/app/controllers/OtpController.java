@@ -25,10 +25,10 @@ public class OtpController {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        String firstName = user.getFirstName();
+        String firstName = "ted";
         int otp = otpService.otpGeneration(firstName);
 
-        mailMessage.setTo(user.getEmail());
+        mailMessage.setTo("tedburg5@gmail.com");
         mailMessage.setText(String.valueOf(otp));
 
         mailSender.send(mailMessage);
@@ -37,15 +37,16 @@ public class OtpController {
     }
 
     @PostMapping("/otpValidation")
-    public String otpValidation(int otp, Model model, User user){
+    public String otpValidation(Integer otp, Model model, User user){
 
-        String firstName = user.getFirstName();
+        String firstName = "ted";
 
         if(otp >= 0){
             int serverOtp = otpService.getOtp(firstName);
 
             if(otp > 0){
                 if(otp == serverOtp){
+                    otpService.clearOtp(firstName);
                     model.addAttribute("valid","Valid");
                 }else {
                     model.addAttribute("error","Invalid token, try again");
