@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OtpController {
@@ -36,8 +37,8 @@ public class OtpController {
         return "fragments/authentication/otp";
     }
 
-    @PostMapping("/otpValidation")
-    public String otpValidation(Integer otp, Model model, User user){
+    @GetMapping("/otpValidation")
+    public String otpValidation(@RequestParam("otp") Integer otp, Model model, User user){
 
         String firstName = "ted";
 
@@ -54,7 +55,7 @@ public class OtpController {
             }
         }
 
-        return "redirect:fragments/chama/chama";
+        return "redirect:chama";
     }
 
 }
