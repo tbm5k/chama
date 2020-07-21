@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "us_users")
@@ -12,9 +13,11 @@ public class User {
     @Id
     @Column(name ="id")
     private int id;
+    @Column(name = "uuid")
+    private UUID uuid = UUID.randomUUID();
     @Column(name = "us_fname")
     private String firstName;
-    @Column(name = "us_name")
+    @Column(name = "us_lname")
     private String lastName;
     @Column(name = "us_username")
     private String username;
@@ -29,6 +32,10 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public String getFirstName() {
