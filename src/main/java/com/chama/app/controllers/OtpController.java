@@ -1,53 +1,46 @@
 package com.chama.app.controllers;
 
 import com.chama.app.models.User;
+import com.chama.app.services.MailService;
 import com.chama.app.services.OtpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OtpController {
 
     @Autowired
-    JavaMailSender mailSender;
+    OtpService otpService;
 
     @Autowired
-    OtpService otpService;
+    MailService mailService;
 
     //An otp is generated once this method is called and sent to the client via email
     @GetMapping("/generateOtp")
-    public String otpGeneration(User user){
+    public String otpGeneration(){
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        String username = "ted";
+        int opt = otpService.otpGeneration(username);
 
-        String firstName = "ted";
-        int otp = otpService.otpGeneration(firstName);
-
-        mailMessage.setTo("tedburg5@gmail.com");
-        mailMessage.setText(String.valueOf(otp));
-
-        mailSender.send(mailMessage);
+        mailService.sendMail("tedburg5@gmail.com", String.valueOf(opt));
 
         return "fragments/authentication/otp";
     }
 
     @GetMapping("/otpValidation")
-    public String otpValidation(@RequestParam("otp") Integer otp, Model model, User user){
+    public String otpValidation(@RequestParam("otp") Integer otp, Model model){
 
-        String firstName = "ted";
+        String username = "ted";
 
         if(otp >= 0){
-            int serverOtp = otpService.getOtp(firstName);
+            int serverOtp = otpService.getOtp(username);
 
             if(otp > 0){
                 if(otp == serverOtp){
-                    otpService.clearOtp(firstName);
+                    otpService.clearOtp(username);
                     model.addAttribute("valid","Valid");
                 }else {
                     model.addAttribute("error","Invalid token, try again");
