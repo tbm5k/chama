@@ -24,7 +24,7 @@ public class OtpService {
         });
     }
 
-    //This method is used to push the opt number against Key. Rewrite the OTP if it exists
+    //This method is used to push the opt number against Key.
     //Using user id  as key
     public int otpGeneration(String key) {
 
@@ -34,11 +34,11 @@ public class OtpService {
         return otp;
     }
 
-    //returns the otp against key(first name)
+    //returns the otp against key(username)
     public int getOtp(String key) {
 
         try {
-            otpCache.get(key);
+            return otpCache.get(key);
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
