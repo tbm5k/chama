@@ -1,6 +1,5 @@
 package com.chama.app.controllers;
 
-import com.chama.app.models.User;
 import com.chama.app.services.MailService;
 import com.chama.app.services.OtpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,11 @@ public class OtpController {
     @Autowired
     MailService mailService;
 
+    String username = "ted";
     //An otp is generated once this method is called and sent to the client via email
     @GetMapping("/generateOtp")
     public String otpGeneration(){
 
-        String username = "ted";
         int opt = otpService.otpGeneration(username);
 
         mailService.sendMail("tedburg5@gmail.com", String.valueOf(opt));
@@ -32,8 +31,6 @@ public class OtpController {
 
     @GetMapping("/otpValidation")
     public String otpValidation(@RequestParam("otp") Integer otp, Model model){
-
-        String username = "ted";
 
         if(otp >= 0){
             int serverOtp = otpService.getOtp(username);
