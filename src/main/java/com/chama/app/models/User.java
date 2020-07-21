@@ -14,7 +14,7 @@ public class User {
     @Column(name ="id")
     private int id;
     @Column(name = "uuid")
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
     @Column(name = "us_fname")
     private String firstName;
     @Column(name = "us_lname")
@@ -25,6 +25,10 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+
+    public User(){
+        this.uuid = UUID.randomUUID();
+    }
 
     public int getId() {
         return id;

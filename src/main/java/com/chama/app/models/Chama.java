@@ -14,9 +14,13 @@ public class Chama {
     @Column(name = "id")
     private int id;
     @Column(name = "uuid")
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
     @Column(name = "ch_name")
     private String name;
+
+    public Chama() {
+        this.uuid = UUID.randomUUID();
+    }
 
     public int getId() {
         return id;
