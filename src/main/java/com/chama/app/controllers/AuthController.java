@@ -32,12 +32,16 @@ public class AuthController {
     @PostMapping("/sign-up")
     public String addNewUser(User user, Model model){
 
+        if(userRepo.findByUsername(user.getUsername()) != null){
+            model.addAttribute("usernameError", "Username is taken");
+            return "fragments/authentication/sign-up";
+        }
+
         if(userRepo.findByEmail(user.getEmail()) != null){
-            model.addAttribute("error","Email exists");
+            model.addAttribute("emailError","Email exists");
             return "fragments/authentication/sign-up";
         } else{
             userService.addNewUser(user);
-            model.addAttribute("success","Account created");
             return "redirect:generateOtp";
         }
     }
