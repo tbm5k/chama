@@ -45,6 +45,7 @@ public class AuthController {
     @PostMapping("/sign-up")
     public String addNewUser(User user, Model model){
 
+        //getting the username and email from the submitted form by the client
         username = user.getUsername();
         email = user.getEmail();
 
@@ -57,12 +58,16 @@ public class AuthController {
             model.addAttribute("emailError","Email exists");
             return "fragments/authentication/sign-up";
         } else{
+
+            //calling the add method to save the validated user
             userService.addNewUser(user);
+            //generate otp for the new user
             otpGeneration(username, email);
             return "fragments/authentication/otp";
         }
     }
 
+    //method is called when the opt client submits the opt in the otp form
     @GetMapping("/otpValidation")
     public String otpValidation(@RequestParam("otp") Integer otp, Model model){
 
@@ -83,6 +88,7 @@ public class AuthController {
         return "fragments/authentication/otp";
     }
 
+    //Generate otp per as per the username
     public void otpGeneration(String username, String email){
 
         int opt = otpService.otpGeneration(username);
