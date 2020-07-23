@@ -6,6 +6,9 @@ import com.chama.app.services.OtpService;
 import com.chama.app.services.UserService;
 import com.chama.app.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +20,14 @@ public class AuthController {
 
     @Autowired
     UserService userService;
-
     @Autowired
     UserRepo userRepo;
-
     @Autowired
     OtpService otpService;
-
     @Autowired
     MailService mailService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     //Global variables
     public String username;
@@ -63,8 +65,18 @@ public class AuthController {
             model.addAttribute("passwordError","Passwords don't match");
             return "fragments/authentication/sign-up";
         }else{
+
+            //Defining user parameters
+            User newUser = new User();
+            newUser.setId(user.getId());
+            newUser.setUuid(user.getUuid());
+            newUser.setFirstName(user.getFirstName());
+            newUser.setLastName(user.getLastName());
+            newUser.setUsername(user.getUsername());
+            newUser.setEmail(user.getEmail());
+            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
             //calling the add method to save the validated user
-            userService.addNewUser(user);
+            userService.addNewUser(newUser);
             //generate otp for the new user
             otpGeneration(username, email);
             return "fragments/authentication/otp";
@@ -104,6 +116,11 @@ public class AuthController {
     @GetMapping("/resetPassword")
     public String resetPassword(){
         return "fragments/authentication/forgot-password";
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }
