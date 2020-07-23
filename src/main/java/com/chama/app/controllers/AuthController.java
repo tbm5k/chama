@@ -57,8 +57,12 @@ public class AuthController {
         if(userRepo.findByEmail(user.getEmail()) != null){
             model.addAttribute("emailError","Email exists");
             return "fragments/authentication/sign-up";
-        } else{
+        }
 
+        if(!user.getPassword().equals(user.getConfirmPassword())){
+            model.addAttribute("passwordError","Passwords don't match");
+            return "fragments/authentication/sign-up";
+        }else{
             //calling the add method to save the validated user
             userService.addNewUser(user);
             //generate otp for the new user

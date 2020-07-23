@@ -1,9 +1,6 @@
 package com.chama.app.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +22,8 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+    @Transient
+    private String confirmPassword;
 
     public User(){
         this.uuid = UUID.randomUUID();
@@ -80,5 +79,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }
