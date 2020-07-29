@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ChamaController {
@@ -24,15 +25,27 @@ public class ChamaController {
         return "fragments/chama/chama";
     }
 
+    @GetMapping("/chamaDashboard")
+    public String chamaDashboard(){
+        return "fragments/chama/chama-dashboard";
+    }
+
     @PostMapping("/chama")
     public String createChama(Chama chama, Model model){
 
         if(chamaRepo.findByName(chama.getName()) != null){
             model.addAttribute("error", "Chama exists!");
+            return "fragments/chama/chama";
         }else {
             chamaService.addNewChama(chama);
             model.addAttribute("success", "Chama created!");
+            return "fragments/chama/chama-dashboard";
         }
-        return "fragments/chama/chama";
+    }
+
+    @GetMapping("/inviteUser")
+    public String inviteUser(@RequestParam("userCode") Integer userCode, Model model){
+        model.addAttribute("invitation","User invited");
+        return "fragments/chama/chama-dashboard";
     }
 }

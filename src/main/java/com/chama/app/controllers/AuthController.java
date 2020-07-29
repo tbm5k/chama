@@ -94,7 +94,7 @@ public class AuthController {
                 if(otp == serverOtp){
                     otpService.clearOtp(username);
                     model.addAttribute("valid","Valid");
-                    return "redirect:chama";
+                    return "redirect:userDashboard";
                 }else {
                     model.addAttribute("error","Invalid token, try again");
                 }

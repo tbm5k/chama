@@ -16,12 +16,13 @@
             <h2>Create Chama</h2>
             <div class="form-group">
                 <label for="chama">Chama name</label>
-                <input type="text" class="form-control" id="chama" placeholder="Changa chama">
+                <input th:field="*{name}" type="text" class="form-control" id="chama" placeholder="Changa chama">
                 <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
             <div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
+            <p><a th:href="@{/chamaDashboard}">Dashboard</a></p>
         </form>
     </div>
     </body>
