@@ -16,6 +16,18 @@
             <div>
                 <p><a th:href="@{/chama}">Create chama</a></p>
             </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Invites</td>
+                        </tr>
+                        <tr th:each="invite : ${invites}">
+                            <td th:text="${invite.}"></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </body>
 </html>
