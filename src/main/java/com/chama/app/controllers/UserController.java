@@ -12,6 +12,7 @@ public class UserController {
     @Autowired
     InviteService inviteService;
 
+    //the user dashboard endpoint gets the invites of a specified user and renders them
     @GetMapping("/userDashboard")
     public String getDashboard(Model model){
         model.addAttribute("invites", inviteService.findAllInvites(10));

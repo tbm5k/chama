@@ -18,10 +18,10 @@ public class InviteService {
         inviteRepo.save(invite);
     }
 
+    //returns a list of invites of a user
     public List<Invite> findAllInvites(int userId) {
         List<Invite> inviteList = new ArrayList<>();
         inviteRepo.findByUserForeignKey(userId).forEach(inviteList::add);
-        //inviteRepo.findAll().forEach(inviteList::add);
         return inviteList;
     }
 }

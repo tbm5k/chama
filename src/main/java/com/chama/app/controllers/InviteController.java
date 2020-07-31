@@ -19,6 +19,7 @@ public class InviteController {
     @PostMapping("/inviteUser")
     public String addInvite(Invite invite, Model model){
 
+        //checking if the user exists before sending an invite
         if(userRepo.findById(invite.getUserForeignKey()).isPresent()){
             inviteService.addNewInvite(invite);
             model.addAttribute("success", "User invited");
