@@ -20,10 +20,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Invites</td>
+                            <th>User id</th>
+                            <th>Chama id</th>
                         </tr>
                         <tr th:each="invite : ${invites}">
-                            <td th:text="${invite.}"></td>
+                            <td th:text="${invite.userForeignKey}"></td>
+                            <td th:text="${invite.chamaForeignKey}"></td>
                         </tr>
                     </thead>
                 </table>
