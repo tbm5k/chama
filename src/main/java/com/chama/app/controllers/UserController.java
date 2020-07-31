@@ -14,7 +14,7 @@ public class UserController {
 
     @GetMapping("/userDashboard")
     public String getDashboard(Model model){
-        model.addAttribute("invites", inviteService.findAllInvites());
+        model.addAttribute("invites", inviteService.findAllInvites(10));
         return "fragments/user/user-dashboard";
     }
 }

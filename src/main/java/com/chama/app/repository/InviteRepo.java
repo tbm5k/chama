@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface InviteRepo extends CrudRepository<Invite, Integer> {
 
-    Invite existsByUserForeignKey(Integer foreignKey);
+    Iterable<Invite> findByUserForeignKey(Integer foreignKey);
 
 }
