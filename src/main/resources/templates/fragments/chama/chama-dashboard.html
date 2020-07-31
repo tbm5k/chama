@@ -14,16 +14,22 @@
         <div layout:fragment="content">
             <h2>Chama dashboard</h2>
             <div>
-                <form th:action="@{/inviteUser}" style="width:350px;" class="container border rounded px-5 py-3">
+
+                <form th:action="@{/inviteUser}" method="post" th:object="${invite}" style="width:350px;" class="container border rounded px-5 py-3">
                     <h2>Invite user</h2>
                     <div class="form-group">
-                        <label for="inviteUser">User code</label>
-                        <input th:name="userCode" type="text" class="form-control" id="inviteUser" placeholder="User code">
+                        <label for="userId">User code</label>
+                        <input th:field="*{userForeignKey}" type="text" class="form-control" id="userId" placeholder="User code">
+                        <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="chamaId">Chama code</label>
+                        <input th:field="*{chamaForeignKey}" type="text" class="form-control" id="chamaId" placeholder="Chama code">
+                    </div>
                     <button type="submit" class="btn btn-primary">Invite</button>
-                    <div th:if="${invitation}" th:text="${invitation}" class="alert alert-success" role="alert"></div>
+                    <div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
                 </form>
+
             </div>
         </div>
     </body>

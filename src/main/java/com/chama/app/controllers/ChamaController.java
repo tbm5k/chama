@@ -1,6 +1,7 @@
 package com.chama.app.controllers;
 
 import com.chama.app.models.Chama;
+import com.chama.app.models.Invite;
 import com.chama.app.repository.ChamaRepo;
 import com.chama.app.services.ChamaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class ChamaController {
     }
 
     @GetMapping("/chamaDashboard")
-    public String chamaDashboard(){
+    public String chamaDashboard(Model model){
+        model.addAttribute("invite", new Invite());
         return "fragments/chama/chama-dashboard";
     }
 
@@ -41,11 +43,5 @@ public class ChamaController {
             model.addAttribute("success", "Chama created!");
             return "fragments/chama/chama-dashboard";
         }
-    }
-
-    @GetMapping("/inviteUser")
-    public String inviteUser(@RequestParam("userCode") Integer userCode, Model model){
-        model.addAttribute("invitation","User invited");
-        return "fragments/chama/chama-dashboard";
     }
 }
