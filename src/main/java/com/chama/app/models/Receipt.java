@@ -3,9 +3,12 @@ package com.chama.app.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import java.sql.Date;
 import java.util.UUID;
 
 @Entity
+@Table(name = "re_receipt")
 public class Receipt {
 
     @Id
@@ -16,17 +19,19 @@ public class Receipt {
     @Column(name = "re_number")
     private int receiptNumber;
     @Column(name = "re_amount")
-    private int amount;
+    private int receiptAmount;
+    @Column(name = "re_date")
+    private Date receiptDate;
     @Column(name = "re_payment_mode")
     private String paymentMode;
     @Column(name = "re_payment_description")
     private String paymentDescription;
     @Column(name = "re_status")
-    private boolean status;
+    private boolean receiptStatus;
     @Column(name = "re_contribution_type")
     private String contributionType;
-    @Column(name = "us_id_fk")
-    private int userForeignKey;
+    @Column(name = "re_type")
+    private String receiptType;
 
     public Receipt() {
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -56,12 +61,20 @@ public class Receipt {
         this.receiptNumber = receiptNumber;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getReceiptAmount() {
+        return receiptAmount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setReceiptAmount(int receiptAmount) {
+        this.receiptAmount = receiptAmount;
+    }
+
+    public Date getReceiptDate() {
+        return receiptDate;
+    }
+
+    public void setReceiptDate(Date receiptDate) {
+        this.receiptDate = receiptDate;
     }
 
     public String getPaymentMode() {
@@ -80,12 +93,12 @@ public class Receipt {
         this.paymentDescription = paymentDescription;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isReceiptStatus() {
+        return receiptStatus;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setReceiptStatus(boolean receiptStatus) {
+        this.receiptStatus = receiptStatus;
     }
 
     public String getContributionType() {
@@ -96,11 +109,11 @@ public class Receipt {
         this.contributionType = contributionType;
     }
 
-    public int getUserForeignKey() {
-        return userForeignKey;
+    public String getReceiptType() {
+        return receiptType;
     }
 
-    public void setUserForeignKey(int userForeignKey) {
-        this.userForeignKey = userForeignKey;
+    public void setReceiptType(String receiptType) {
+        this.receiptType = receiptType;
     }
 }
