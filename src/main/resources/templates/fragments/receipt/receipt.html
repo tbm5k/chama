@@ -4,6 +4,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/app}">
 <head>
+
+    <style>
+
+        .dropdown-list {
+            display:none;
+        }
+
+        input[id="contributions"]:checked ~ .dropdown-list {
+            display:block;
+        }
+
+    </style>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +26,24 @@
     <body>
         <div layout:fragment="content">
             <h1>Receipt</h1>
+            <form style="width:350px;" class="container border rounded px-5 py-3">
+                <div class="form-group">
+                    <input type="radio" id="contributions" name="receipt-type">
+                    <label for="contributions">Contributions</label>
+
+                    <input type="radio" id="income" name="receipt-type">
+                    <label for="income">Income</label>
+
+                    <div class="dropdown-list">
+                        <label>Member: </label>
+                        <select th:field="*{members}">
+                            <option th:each="member : ${members}" th:value="${member.userForeignKey}" th:text="${member.userForeignKey}"></option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </form>
         </div>
     </body>
 </html>
