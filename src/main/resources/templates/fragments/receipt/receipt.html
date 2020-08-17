@@ -26,25 +26,61 @@
     <body>
         <div layout:fragment="content">
             <h1>Receipt</h1>
-            <form style="width:350px;" class="container border rounded px-5 py-3">
+            <form th:object="${receipt}" th:action="@{/receipt}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
                 <div class="form-group">
                     <input type="radio" id="contributions" name="receipt-type">
                     <label for="contributions">Contributions</label>
 
                     <input type="radio" id="income" name="receipt-type">
                     <label for="income">Income</label>
-
+                    <!--
                     <div class="dropdown-list">
                         <label>Member: </label>
                         <select th:field="*{members}">
                             <option th:each="member : ${members}" th:value="${member.userForeignKey}" th:text="${member.userForeignKey}"></option>
                         </select>
                     </div>
-
+                    -->
                 </div>
 
                 <div class="form-group">
+                    <label for="receiptNumber">Receipt number</label>
+                    <input id="receiptNumber" th:field="*{receiptNumber}" class="form-control" type="number" placeholder="dd/mm/yy" required>
+                </div>
 
+                <div class="form-group">
+                    <label for="receiptAmount">Amount</label>
+                    <input id="receiptAmount" th:field="*{receiptAmount}" class="form-control" type="number" placeholder="e.g $500" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="receiptDate">Date</label>
+                    <input id="receiptDate" th:field="*{receiptDate}" class="form-control" type="date" placeholder="Receipt date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMode">Payment mode</label>
+                    <input id="paymentMode" th:field="*{paymentMode}" class="form-control" type="text" placeholder="Mode of payment" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentDescription">Payment description</label>
+                    <input id="paymentDescription" th:field="*{paymentDescription}" class="form-control" type="number" placeholder="Payment description" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="receiptStatus">Receipt status</label>
+                    <input id="receiptStatus" th:field="*{receiptStatus}" class="form-control" type="text" placeholder="e.g Approved" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contributionType">Contribution type</label>
+                    <input id="contributionType" th:field="*{contributionType}" class="form-control" type="text" placeholder="Type of contribution" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="receiptType">Receipt type</label>
+                    <input id="receiptType" th:field="*{receiptType}" class="form-control" type="text" placeholder="Type of receipt" required>
                 </div>
 
             </form>
