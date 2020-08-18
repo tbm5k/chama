@@ -1,6 +1,7 @@
 package com.chama.app.controllers;
 
 import com.chama.app.models.Receipt;
+import com.chama.app.services.ReceiptService;
 import com.chama.app.services.UserIntegrationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class ReceiptController {
 
     @Autowired
     UserIntegrationsService userIntegrationsService;
+    @Autowired
+    ReceiptService receiptService;
 
     @GetMapping("/receipt")
     public String getReceipt(Model model){
@@ -23,7 +26,8 @@ public class ReceiptController {
     }
 
     @PostMapping("/receipt")
-    public String setReceipt(){
+    public String setReceipt(Receipt receipt){
+        receiptService.addNewReceipt(receipt);
         System.out.println("Receipt posted");
         return "fragments/receipt/receipt";
     }
