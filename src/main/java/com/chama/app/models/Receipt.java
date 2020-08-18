@@ -16,7 +16,7 @@ public class Receipt {
     private int id;
     @Column(name = "uuid")
     private String uuid;
-    @Column(name = "ui_id_fk")
+    @Column(name = "us_id_fk")
     private int memberId;
     @Column(name = "re_number")
     private int receiptNumber;
