@@ -33,14 +33,14 @@
 
                     <input type="radio" id="income" name="receipt-type">
                     <label for="income">Income</label>
-                    <!--
+
                     <div class="dropdown-list">
                         <label>Member: </label>
-                        <select th:field="*{members}">
+                        <select th:field="*{memberId}">
                             <option th:each="member : ${members}" th:value="${member.userForeignKey}" th:text="${member.userForeignKey}"></option>
                         </select>
                     </div>
-                    -->
+
                 </div>
 
                 <div class="form-group">
@@ -60,17 +60,29 @@
 
                 <div class="form-group">
                     <label for="paymentMode">Payment mode</label>
-                    <input id="paymentMode" th:field="*{paymentMode}" class="form-control" type="text" placeholder="Mode of payment" required>
+                    <input list="modes" id="paymentMode" th:field="*{paymentMode}" class="form-control" type="text" placeholder="Mode of payment" required>
+                    <datalist id="modes">
+                        <option value="Cash"></option>
+                        <option value="Check"></option>
+                        <option value="Credit card"></option>
+                        <option value="m-pesa"></option>
+                        <option value="Direct deposit"></option>
+                    </datalist>
                 </div>
 
                 <div class="form-group">
                     <label for="paymentDescription">Payment description</label>
-                    <input id="paymentDescription" th:field="*{paymentDescription}" class="form-control" type="number" placeholder="Payment description" required>
+                    <input id="paymentDescription" th:field="*{paymentDescription}" class="form-control" type="text" placeholder="Payment description" required>
                 </div>
 
                 <div class="form-group">
                     <label for="receiptStatus">Receipt status</label>
-                    <input id="receiptStatus" th:field="*{receiptStatus}" class="form-control" type="text" placeholder="e.g Approved" required>
+                    <input list="status" id="receiptStatus" th:field="*{receiptStatus}" class="form-control" type="text" placeholder="e.g Approved" required>
+                    <datalist id="status">
+                        <option value="Cancelled"></option>
+                        <option value="Pending"></option>
+                        <option value="Approved"></option>
+                    </datalist>
                 </div>
 
                 <div class="form-group">
@@ -83,6 +95,7 @@
                     <input id="receiptType" th:field="*{receiptType}" class="form-control" type="text" placeholder="Type of receipt" required>
                 </div>
 
+                <button type="submit" class="btn btn-primary">Offer receipt</button>
             </form>
         </div>
     </body>

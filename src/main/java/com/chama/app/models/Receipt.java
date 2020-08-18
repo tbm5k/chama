@@ -16,6 +16,8 @@ public class Receipt {
     private int id;
     @Column(name = "uuid")
     private String uuid;
+    @Column(name = "ui_id_fk")
+    private int memberId;
     @Column(name = "re_number")
     private int receiptNumber;
     @Column(name = "re_amount")
@@ -27,7 +29,7 @@ public class Receipt {
     @Column(name = "re_payment_description")
     private String paymentDescription;
     @Column(name = "re_status")
-    private boolean receiptStatus;
+    private String receiptStatus;
     @Column(name = "re_contribution_type")
     private String contributionType;
     @Column(name = "re_type")
@@ -51,6 +53,14 @@ public class Receipt {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public int getReceiptNumber() {
@@ -93,11 +103,11 @@ public class Receipt {
         this.paymentDescription = paymentDescription;
     }
 
-    public boolean isReceiptStatus() {
+    public String getReceiptStatus() {
         return receiptStatus;
     }
 
-    public void setReceiptStatus(boolean receiptStatus) {
+    public void setReceiptStatus(String receiptStatus) {
         this.receiptStatus = receiptStatus;
     }
 

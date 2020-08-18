@@ -17,7 +17,7 @@ public class ReceiptController {
     @GetMapping("/receipt")
     public String getReceipt(Model model){
         //dynamically set the chama id
-        //model.addAttribute("members", userIntegrationsService.findByChamaForeignKey(2));
+        model.addAttribute("members", userIntegrationsService.findByChamaForeignKey(2));
         model.addAttribute("receipt", new Receipt());
         return "fragments/receipt/receipt";
     }
