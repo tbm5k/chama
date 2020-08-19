@@ -5,7 +5,7 @@ import com.chama.app.repository.SequenceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.Calendar;
 
 @Service
 public class SequenceService {
@@ -15,7 +15,7 @@ public class SequenceService {
 
     public void createNewSequence(String name, Sequence sequence) {
 
-        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
 
         Sequence holder = new Sequence();
         holder.setId(sequence.getId());
@@ -29,7 +29,7 @@ public class SequenceService {
         }
 
         holder.setNumber(sequence.getNumber());
-        holder.setSuffix(date.getYear());
+        holder.setSuffix(calendar.get(Calendar.YEAR));
 
         sequenceRepo.save(holder);
     }
