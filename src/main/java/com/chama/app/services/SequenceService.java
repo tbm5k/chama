@@ -18,11 +18,18 @@ public class SequenceService {
         Date date = new Date();
 
         Sequence holder = new Sequence();
-        sequence.setId(sequence.getId());
-        sequence.setUuid(sequence.getUuid());
-        sequence.setPrefix(name);
-        sequence.setNumber(sequence.getNumber());
-        sequence.setSuffix(date.getYear());
+        holder.setId(sequence.getId());
+        holder.setUuid(sequence.getUuid());
+
+        if (name.length() > 3){
+            String abbreviation = name.substring(0, 3);
+            holder.setPrefix(abbreviation.toUpperCase());
+        }else {
+            holder.setPrefix(name.toUpperCase());
+        }
+
+        holder.setNumber(sequence.getNumber());
+        holder.setSuffix(date.getYear());
 
         sequenceRepo.save(holder);
     }

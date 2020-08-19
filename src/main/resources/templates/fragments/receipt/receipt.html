@@ -44,8 +44,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="receiptNumber">Receipt number</label>
-                    <input id="receiptNumber" th:field="*{receiptNumber}" class="form-control" type="number" placeholder="dd/mm/yy" required>
+                    <label for="contributionType">Contribution type</label>
+                    <input list="type" id="contributionType" th:field="*{contributionType}" class="form-control" type="text" placeholder="Type of contribution" required>
+                    <datalist id="type">
+                        <option value="Income"></option>
+                        <option value="Contribution"></option>
+                    </datalist>
                 </div>
 
                 <div class="form-group">
@@ -73,21 +77,6 @@
                 <div class="form-group">
                     <label for="paymentDescription">Payment description</label>
                     <input id="paymentDescription" th:field="*{paymentDescription}" class="form-control" type="text" placeholder="Payment description" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="receiptStatus">Receipt status</label>
-                    <input list="status" id="receiptStatus" th:field="*{receiptStatus}" class="form-control" type="text" placeholder="e.g Approved" required>
-                    <datalist id="status">
-                        <option value="Cancelled"></option>
-                        <option value="Pending"></option>
-                        <option value="Approved"></option>
-                    </datalist>
-                </div>
-
-                <div class="form-group">
-                    <label for="contributionType">Contribution type</label>
-                    <input id="contributionType" th:field="*{contributionType}" class="form-control" type="text" placeholder="Type of contribution" required>
                 </div>
 
                 <div class="form-group">

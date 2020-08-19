@@ -2,8 +2,10 @@ package com.chama.app.controllers;
 
 import com.chama.app.models.Chama;
 import com.chama.app.models.Invite;
+import com.chama.app.models.Sequence;
 import com.chama.app.repository.ChamaRepo;
 import com.chama.app.services.ChamaService;
+import com.chama.app.services.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,10 @@ public class ChamaController {
 
     @Autowired
     ChamaService chamaService;
-
     @Autowired
     ChamaRepo chamaRepo;
+    @Autowired
+    SequenceService sequenceService;
 
     @GetMapping("/chama")
     public String createChamaTemplate(Model model){
@@ -40,8 +43,9 @@ public class ChamaController {
             return "fragments/chama/chama";
         }else {
             chamaService.addNewChama(chama);
+            sequenceService.createNewSequence(chama.getName(), new Sequence());
             model.addAttribute("success", "Chama created!");
-            return "fragments/chama/chama-dashboard";
+            return "redirect:chamaDashboard";
         }
     }
 }

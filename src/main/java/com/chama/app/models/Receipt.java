@@ -19,7 +19,7 @@ public class Receipt {
     @Column(name = "us_id_fk")
     private int memberId;
     @Column(name = "re_number")
-    private int receiptNumber;
+    private String receiptNumber;
     @Column(name = "re_amount")
     private int receiptAmount;
     @Column(name = "re_date")
@@ -63,11 +63,11 @@ public class Receipt {
         this.memberId = memberId;
     }
 
-    public int getReceiptNumber() {
+    public String getReceiptNumber() {
         return receiptNumber;
     }
 
-    public void setReceiptNumber(int receiptNumber) {
+    public void setReceiptNumber(String receiptNumber) {
         this.receiptNumber = receiptNumber;
     }
 

@@ -27,8 +27,19 @@ public class ReceiptController {
 
     @PostMapping("/receipt")
     public String setReceipt(Receipt receipt){
-        receiptService.addNewReceipt(receipt);
-        System.out.println("Receipt posted");
+
+        Receipt receiptHolder = new Receipt();
+        receiptHolder.setId(receipt.getId());
+        receiptHolder.setUuid(receipt.getUuid());
+        receiptHolder.setMemberId(receipt.getMemberId());
+        receiptHolder.setReceiptNumber(receipt.getReceiptNumber());//call the sequence entity to set the receipt number
+        receiptHolder.setReceiptAmount(receipt.getReceiptAmount());
+        receiptHolder.setReceiptDate(receipt.getReceiptDate());
+        receiptHolder.setPaymentMode(receipt.getPaymentMode());
+        receiptHolder.setPaymentDescription(receipt.getPaymentDescription());
+        receiptHolder.setReceiptType(receipt.getReceiptType());
+
+        receiptService.addNewReceipt(receiptHolder);
         return "fragments/receipt/receipt";
     }
     
