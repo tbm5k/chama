@@ -35,4 +35,8 @@ public class SequenceService {
         sequenceRepo.save(holder);
     }
 
+    public String findChamaSequence(int chamaId) {
+        Sequence sequence = sequenceRepo.findByChamaForeignKey(chamaId);
+        return sequence.getPrefix();
+    }
 }

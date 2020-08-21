@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Calendar;
+
 @Controller
 public class ReceiptController {
 
@@ -31,15 +33,18 @@ public class ReceiptController {
     @PostMapping("/receipt")
     public String setReceipt(Receipt receipt){
 
+        Calendar calendar = Calendar.getInstance();
         Receipt receiptHolder = new Receipt();
         receiptHolder.setId(receipt.getId());
         receiptHolder.setUuid(receipt.getUuid());
         receiptHolder.setMemberId(receipt.getMemberId());
+        receiptHolder.setContributionType(receipt.getContributionType());
 
+        int num = receiptService.findTotal();
+        String prefix = sequenceService.findChamaSequence(17);//dynamically set the chama id
+        String receiptNumber = prefix + "/" + num + "/" + calendar.get(Calendar.YEAR);
 
-//        sequenceService.findChamaSequence(8);
-        receiptHolder.setReceiptNumber(receipt.getReceiptNumber());//call the sequence entity to set the receipt number
-
+        receiptHolder.setReceiptNumber(receiptNumber);//call the sequence entity to set the receipt number
 
         receiptHolder.setReceiptAmount(receipt.getReceiptAmount());
         receiptHolder.setReceiptDate(receipt.getReceiptDate());
