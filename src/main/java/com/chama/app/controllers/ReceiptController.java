@@ -2,6 +2,7 @@ package com.chama.app.controllers;
 
 import com.chama.app.models.Receipt;
 import com.chama.app.services.ReceiptService;
+import com.chama.app.services.SequenceService;
 import com.chama.app.services.UserIntegrationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class ReceiptController {
     UserIntegrationsService userIntegrationsService;
     @Autowired
     ReceiptService receiptService;
+    @Autowired
+    SequenceService sequenceService;
 
     @GetMapping("/receipt")
     public String getReceipt(Model model){
@@ -32,7 +35,12 @@ public class ReceiptController {
         receiptHolder.setId(receipt.getId());
         receiptHolder.setUuid(receipt.getUuid());
         receiptHolder.setMemberId(receipt.getMemberId());
+
+
+//        sequenceService.findChamaSequence(8);
         receiptHolder.setReceiptNumber(receipt.getReceiptNumber());//call the sequence entity to set the receipt number
+
+
         receiptHolder.setReceiptAmount(receipt.getReceiptAmount());
         receiptHolder.setReceiptDate(receipt.getReceiptDate());
         receiptHolder.setPaymentMode(receipt.getPaymentMode());

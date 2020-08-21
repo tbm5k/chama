@@ -14,4 +14,8 @@ public class ChamaService {
     public void addNewChama(Chama chama) {
         chamaRepo.save(chama);
     }
+
+    public Chama findByName(String name) {
+        return chamaRepo.findByName(name);
+    }
 }

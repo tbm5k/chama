@@ -43,7 +43,8 @@ public class ChamaController {
             return "fragments/chama/chama";
         }else {
             chamaService.addNewChama(chama);
-            sequenceService.createNewSequence(chama.getName(), new Sequence());
+            Chama idFinder = chamaService.findByName(chama.getName());
+            sequenceService.createNewSequence(idFinder.getId(), chama.getName(), new Sequence());
             model.addAttribute("success", "Chama created!");
             return "redirect:chamaDashboard";
         }

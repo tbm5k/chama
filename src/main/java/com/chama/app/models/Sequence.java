@@ -21,6 +21,8 @@ public class Sequence {
     private int number;
     @Column(name = "se_suffix")
     private int suffix;
+    @Column(name = "ch_id_fk")
+    private int chamaForeignKey;
 
     public Sequence() {
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -64,5 +66,13 @@ public class Sequence {
 
     public void setSuffix(int suffix) {
         this.suffix = suffix;
+    }
+
+    public int getChamaForeignKey() {
+        return chamaForeignKey;
+    }
+
+    public void setChamaForeignKey(int chamaForeignKey) {
+        this.chamaForeignKey = chamaForeignKey;
     }
 }

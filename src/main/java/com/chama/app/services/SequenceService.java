@@ -13,7 +13,7 @@ public class SequenceService {
     @Autowired
     SequenceRepo sequenceRepo;
 
-    public void createNewSequence(String name, Sequence sequence) {
+    public void createNewSequence(int id, String name, Sequence sequence) {
 
         Calendar calendar = Calendar.getInstance();
 
@@ -30,7 +30,9 @@ public class SequenceService {
 
         holder.setNumber(sequence.getNumber());
         holder.setSuffix(calendar.get(Calendar.YEAR));
+        holder.setChamaForeignKey(id);
 
         sequenceRepo.save(holder);
     }
+
 }
