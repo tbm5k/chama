@@ -43,8 +43,12 @@ public class ChamaController {
             return "fragments/chama/chama";
         }else {
             chamaService.addNewChama(chama);
+            /*
+            a returned chama object of the newly created chama. This object carries the chama id which want to use as
+            the unique key in the sequence table
+             */
             Chama idFinder = chamaService.findByName(chama.getName());
-            sequenceService.createNewSequence(idFinder.getId(), chama.getName(), new Sequence());
+            sequenceService.createNewSequence(idFinder.getId(), chama.getName(), new Sequence());//creating a new sequence for a chama when the chama is created
             model.addAttribute("success", "Chama created!");
             return "redirect:chamaDashboard";
         }
