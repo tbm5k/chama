@@ -17,7 +17,7 @@ public class Receipt {
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "us_id_fk")
-    private int memberId;
+    private Integer memberId;
     @Column(name = "re_number")
     private String receiptNumber;
     @Column(name = "re_amount")
@@ -55,11 +55,11 @@ public class Receipt {
         this.uuid = uuid;
     }
 
-    public int getMemberId() {
+    public Integer getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(int memberId) {
+    public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
 
