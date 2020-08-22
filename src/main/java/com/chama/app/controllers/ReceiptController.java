@@ -38,7 +38,13 @@ public class ReceiptController {
 
         receiptHolder.setId(receipt.getId());
         receiptHolder.setUuid(receipt.getUuid());
-        receiptHolder.setMemberId(receipt.getMemberId());
+
+        if(receipt.getContributionType().equals("Contributions"))
+            receiptHolder.setMemberId(receipt.getMemberId());
+/*
+        else
+            receiptHolder.setMemberId(null);
+ */
         receiptHolder.setContributionType(receipt.getContributionType());
 
 
