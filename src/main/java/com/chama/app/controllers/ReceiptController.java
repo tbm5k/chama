@@ -35,17 +35,19 @@ public class ReceiptController {
 
         Calendar calendar = Calendar.getInstance();
         Receipt receiptHolder = new Receipt();
+
         receiptHolder.setId(receipt.getId());
         receiptHolder.setUuid(receipt.getUuid());
         receiptHolder.setMemberId(receipt.getMemberId());
         receiptHolder.setContributionType(receipt.getContributionType());
 
+
+        //setting the receipt number
         int num = receiptService.findTotal();
         String prefix = sequenceService.findChamaSequence(17);//dynamically set the chama id
         String receiptNumber = prefix + "/" + num + "/" + calendar.get(Calendar.YEAR);
 
-        receiptHolder.setReceiptNumber(receiptNumber);//call the sequence entity to set the receipt number
-
+        receiptHolder.setReceiptNumber(receiptNumber);//saving the receipt number
         receiptHolder.setReceiptAmount(receipt.getReceiptAmount());
         receiptHolder.setReceiptDate(receipt.getReceiptDate());
         receiptHolder.setPaymentMode(receipt.getPaymentMode());
