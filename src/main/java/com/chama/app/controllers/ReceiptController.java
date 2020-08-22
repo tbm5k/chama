@@ -61,7 +61,7 @@ public class ReceiptController {
         receiptHolder.setReceiptType(receipt.getReceiptType());
 
         receiptService.addNewReceipt(receiptHolder);
-        return "fragments/receipt/receipt";
+        return "redirect:receipt";
     }
     
 }
