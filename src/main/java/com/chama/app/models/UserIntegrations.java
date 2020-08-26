@@ -1,9 +1,6 @@
 package com.chama.app.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -15,12 +12,27 @@ public class UserIntegrations {
     private int id;
     @Column(name = "uuid")
     private String uuid;
+
+    /*
     @Column(name = "ch_id_fk")
     private int chamaForeignKey;
     @Column(name = "us_id_fk")
     private int userForeignKey;
     @Column(name = "ur_id_fk")
     private Integer userRoleForeignKey;
+    */
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private Chama chama;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private User user;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private UserRoles userRoles;
 
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -42,27 +54,27 @@ public class UserIntegrations {
         this.uuid = uuid;
     }
 
-    public int getChamaForeignKey() {
-        return chamaForeignKey;
+    public Chama getChama() {
+        return chama;
     }
 
-    public void setChamaForeignKey(int chamaForeignKey) {
-        this.chamaForeignKey = chamaForeignKey;
+    public void setChama(Chama chama) {
+        this.chama = chama;
     }
 
-    public int getUserForeignKey() {
-        return userForeignKey;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserForeignKey(int userForeignKey) {
-        this.userForeignKey = userForeignKey;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getUserRoleForeignKey() {
-        return userRoleForeignKey;
+    public UserRoles getUserRoles() {
+        return userRoles;
     }
 
-    public void setUserRoleForeignKey(int userRoleForeignKey) {
-        this.userRoleForeignKey = userRoleForeignKey;
+    public void setUserRoles(UserRoles userRoles) {
+        this.userRoles = userRoles;
     }
 }

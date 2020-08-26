@@ -14,9 +14,9 @@ public class UserIntegrationsService {
     @Autowired
     UserIntegrationsRepo integrationsRepo;
 
-    public List<UserIntegrations> findByChamaForeignKey(int chamaId) {
+    public List<UserIntegrations> findByChama(int chamaId) {
         List<UserIntegrations> members = new ArrayList<>();
-        integrationsRepo.findByChamaForeignKey(chamaId).forEach(members::add);
+        integrationsRepo.findByChamaId(chamaId).forEach(members::add);
         return members;
     }
 }

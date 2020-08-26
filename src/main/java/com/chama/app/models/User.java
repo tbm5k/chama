@@ -1,6 +1,7 @@
 package com.chama.app.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,9 @@ public class User {
     private String password;
     @Transient
     private String confirmPassword;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    List<UserIntegrations> userIntegrations;
 
     public User(){
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -91,5 +95,13 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public List<UserIntegrations> getUserIntegrations() {
+        return userIntegrations;
+    }
+
+    public void setUserIntegrations(List<UserIntegrations> userIntegrations) {
+        this.userIntegrations = userIntegrations;
     }
 }
