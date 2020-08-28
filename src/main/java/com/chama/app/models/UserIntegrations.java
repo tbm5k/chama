@@ -1,5 +1,8 @@
 package com.chama.app.models;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -23,14 +26,17 @@ public class UserIntegrations {
     */
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private Chama chama;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private UserRoles userRoles;
 
