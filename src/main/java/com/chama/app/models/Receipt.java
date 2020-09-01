@@ -12,8 +12,8 @@ import java.util.UUID;
 public class Receipt {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "re_id")
+    private int receiptId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "us_id_fk")
@@ -39,12 +39,12 @@ public class Receipt {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getReceiptId() {
+        return receiptId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReceiptId(int receiptId) {
+        this.receiptId = receiptId;
     }
 
     public String getUuid() {

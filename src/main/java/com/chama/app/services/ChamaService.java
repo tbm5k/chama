@@ -17,6 +17,6 @@ public class ChamaService {
 
     public int getChamaId(String name) {
         Chama chama = chamaRepo.findByName(name);
-        return chama.getId();
+        return chama.getChamaId();
     }
 }

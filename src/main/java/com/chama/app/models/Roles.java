@@ -9,8 +9,8 @@ public class Roles {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private int id;
+    @Column(name = "ro_id")
+    private int roleId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "ro_name")
@@ -23,12 +23,12 @@ public class Roles {
     @OneToMany(mappedBy = "roleForeignKey")
     private List<UserRoles> userRolesList;
 
-    public int getId() {
-        return id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getUuid() {

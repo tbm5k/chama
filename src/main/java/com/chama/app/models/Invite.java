@@ -11,8 +11,8 @@ import java.util.UUID;
 public class Invite {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "in_id")
+    private int inviteId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "us_id_fk")
@@ -24,12 +24,12 @@ public class Invite {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getInviteId() {
+        return inviteId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setInviteId(int inviteId) {
+        this.inviteId = inviteId;
     }
 
     public String getUuid() {

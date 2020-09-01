@@ -18,7 +18,7 @@ public class SequenceService {
         Calendar calendar = Calendar.getInstance();
 
         Sequence holder = new Sequence();
-        holder.setId(sequence.getId());
+        holder.setSequenceId(sequence.getSequenceId());
         holder.setUuid(sequence.getUuid());
 
         if (name.length() > 3){

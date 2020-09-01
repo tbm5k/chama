@@ -9,26 +9,26 @@ public class UserRoles {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private int id;
+    @Column(name = "ur_id")
+    private int userRoleId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "ur_dashboard")
     private char dashboard;
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "ro_id_fk")
     private Roles roleForeignKey;
 
     @OneToMany(mappedBy = "userRoles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<UserIntegrations> userIntegrations;
 
-    public int getId() {
-        return id;
+    public int getUserRoleId() {
+        return userRoleId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserRoleId(int userRoleId) {
+        this.userRoleId = userRoleId;
     }
 
     public String getUuid() {

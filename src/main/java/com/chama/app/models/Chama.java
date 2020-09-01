@@ -9,8 +9,8 @@ import java.util.UUID;
 public class Chama {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "ch_id")
+    private int chamaId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "ch_name")
@@ -23,12 +23,12 @@ public class Chama {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getChamaId() {
+        return chamaId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setChamaId(int chamaId) {
+        this.chamaId = chamaId;
     }
 
     public String getUuid() {

@@ -8,7 +8,7 @@ public interface UserIntegrationsRepo extends CrudRepository<UserIntegrations, I
 
     @Query(
             nativeQuery = true,
-            value = "SELECT * FROM Ui_User_Integrations WHERE ch_id_fk = 2;"
+            value = "SELECT * FROM Ui_User_Integrations WHERE ch_id_fk = 1;"
     )
     Iterable<UserIntegrations> findByChama();
 }

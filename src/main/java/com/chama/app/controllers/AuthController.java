@@ -68,7 +68,7 @@ public class AuthController {
 
             //Defining user parameters
             User newUser = new User();
-            newUser.setId(user.getId());
+            newUser.setUserId(user.getUserId());
             newUser.setUuid(user.getUuid());
             newUser.setFirstName(user.getFirstName());
             newUser.setLastName(user.getLastName());

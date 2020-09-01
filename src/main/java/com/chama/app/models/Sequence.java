@@ -11,8 +11,8 @@ import java.util.UUID;
 public class Sequence {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "se_id")
+    private int sequenceId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "se_prefix")
@@ -28,12 +28,12 @@ public class Sequence {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getSequenceId() {
+        return sequenceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSequenceId(int sequenceId) {
+        this.sequenceId = sequenceId;
     }
 
     public String getUuid() {

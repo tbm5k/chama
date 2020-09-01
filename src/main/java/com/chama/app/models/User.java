@@ -9,8 +9,8 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @Column(name ="id")
-    private int id;
+    @Column(name ="us_id")
+    private int userId;
     @Column(name = "uuid")
     private String uuid;
     @Column(name = "us_fname")
@@ -21,7 +21,7 @@ public class User {
     private String username;
     @Column(name = "us_email")
     private String email;
-    @Column(name = "password")
+    @Column(name = "us_password")
     private String password;
     @Transient
     private String confirmPassword;
@@ -33,12 +33,12 @@ public class User {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUuid() {

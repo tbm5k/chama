@@ -11,8 +11,8 @@ import java.util.UUID;
 public class UserIntegrations {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @Column(name = "ui_id")
+    private int userIntegrationsId;
     @Column(name = "uuid")
     private String uuid;
 
@@ -27,29 +27,29 @@ public class UserIntegrations {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "ch_id_fk")
     private Chama chama;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "us_id_fk")
     private User user;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "ur_id_fk")
     private UserRoles userRoles;
 
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getId() {
-        return id;
+    public int getUserIntegrationsId() {
+        return userIntegrationsId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserIntegrationsId(int userIntegrationsId) {
+        this.userIntegrationsId = userIntegrationsId;
     }
 
     public String getUuid() {
