@@ -1,6 +1,7 @@
 package com.chama.app.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,9 @@ public class UserIntegrations {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ur_id_fk")
     private UserRoles userRoles;
+
+    @OneToMany(mappedBy = "userIntegrations")
+    private List<Allocation> allocations;
 
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -67,5 +71,13 @@ public class UserIntegrations {
 
     public void setUserRoles(UserRoles userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public List<Allocation> getAllocations() {
+        return allocations;
+    }
+
+    public void setAllocations(List<Allocation> allocations) {
+        this.allocations = allocations;
     }
 }
