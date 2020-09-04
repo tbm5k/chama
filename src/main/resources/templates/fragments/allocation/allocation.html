@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Allocation</title>
+</head>
+    <body>
+    <div layout:fragment="content">
+        <h2>Allocation</h2>
+
+        <form th:object="${allocation}" th:action="@{/allocation}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
+            <div class="form-group">
+                <div class="dropdown-list">
+                    <label>Member: </label>
+                    <select th:field="*{memberId}">
+                        <option th:each="member : ${members}" th:value="${member.user.userId}" th:text="${member.user.username}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input id="amount" th:field="*{amount}" class="form-control" type="number" placeholder="e.g $500" required>
+            </div>
+
+            <div class="form-group">
+                <label for="receiptNUmber">Receipt number</label>
+                <input id="receiptNUmber" th:field="*{receiptNumber}" class="form-control" type="text" placeholder="e.g ABC/123/2020" required>
+            </div>
+
+            <div>
+                <label for="date">Receipt date</label>
+                <input id="date" th:field="*{receiptDate}" class="form-control" type="date" placeholder="e.g 24/06/2020" required>
+            </div>
+
+            <div>
+                <label for="period">Allocation period</label>
+                <input id="period" th:field="*{allocationPeriod}" class="form-control" type="date" placeholder="e.g 24/07/2020" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Allocate</button>
+
+        </form>
+
+    </div>
+    </body>
+</html>
