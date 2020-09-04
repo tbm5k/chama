@@ -26,7 +26,7 @@ public class UserIntegrations {
     @JoinColumn(name = "ur_id_fk")
     private UserRoles userRoles;
 
-    @OneToMany(mappedBy = "userIntegrations")
+    @OneToMany(mappedBy = "memberId")
     private List<Allocation> allocations;
 
     public UserIntegrations() {

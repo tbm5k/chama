@@ -20,10 +20,8 @@ public class Allocation {
     private String receiptNumber;
     @Column(name = "al_period")
     private Date allocationPeriod;
-
-    @ManyToOne
-    @JoinColumn(name = "me_id_fk")
-    private UserIntegrations userIntegrations;
+    @Column(name = "me_id_fk")
+    private Integer memberId;
 
     public int getAllocationId() {
         return allocationId;
@@ -73,11 +71,11 @@ public class Allocation {
         this.allocationPeriod = allocationPeriod;
     }
 
-    public UserIntegrations getUserIntegrations() {
-        return userIntegrations;
+    public Integer getMemberId() {
+        return memberId;
     }
 
-    public void setUserIntegrations(UserIntegrations userIntegrations) {
-        this.userIntegrations = userIntegrations;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 }
