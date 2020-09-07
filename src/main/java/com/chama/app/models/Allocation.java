@@ -2,6 +2,7 @@ package com.chama.app.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "al_allocation")
@@ -22,6 +23,10 @@ public class Allocation {
     private Date allocationPeriod;
     @Column(name = "me_id_fk")
     private Integer memberId;
+
+    public Allocation() {
+        this.uuid = String.valueOf(UUID.randomUUID());
+    }
 
     public int getAllocationId() {
         return allocationId;

@@ -2,6 +2,7 @@ package com.chama.app.controllers;
 
 import com.chama.app.models.Allocation;
 import com.chama.app.services.AllocationService;
+import com.chama.app.services.ReceiptService;
 import com.chama.app.services.UserIntegrationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class AllocationController {
     AllocationService allocationService;
     @Autowired
     UserIntegrationsService userIntegrationsService;
+    @Autowired
+    ReceiptService receiptService;
 
     @GetMapping("/allocation")
     public String allocationPage(Model model){
@@ -26,7 +29,18 @@ public class AllocationController {
 
     @PostMapping("/allocation")
     public String createAllocation(Allocation allocation){
-        allocationService.addAllocation(allocation);
-        return "";
+
+        Allocation allocationHolder = new Allocation();
+        allocationHolder.setAllocationId(allocation.getAllocationId());
+        allocationHolder.setUuid(allocation.getUuid());
+        allocationHolder.setAmount(allocation.getAmount());
+        allocationHolder.setReceiptDate(allocation.getReceiptDate());
+        allocationHolder.setReceiptNumber(receiptService.getLastReceipt().getReceiptNumber());
+        allocationHolder.setAllocationPeriod(allocation.getAllocationPeriod());
+        allocationHolder.setMemberId(allocation.getMemberId());
+
+        allocationService.addAllocation(allocationHolder);
+        
+        return "redirect:chamaDashboard";
     }
 }

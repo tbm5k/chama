@@ -23,4 +23,9 @@ public class ReceiptService {
         receiptRepo.findAll().forEach(receiptList::add);
         return receiptList.size();
     }
+
+    public Receipt getLastReceipt() {
+        List<Receipt> receipts = (List<Receipt>) receiptRepo.findAll();
+        return receipts.get(receipts.size() -1);
+    }
 }

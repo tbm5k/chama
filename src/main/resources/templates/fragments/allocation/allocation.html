@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/app}">
 <head>
@@ -29,10 +29,12 @@
                 <input id="amount" th:field="*{amount}" class="form-control" type="number" placeholder="e.g $500" required>
             </div>
 
+            <!--
             <div class="form-group">
                 <label for="receiptNUmber">Receipt number</label>
                 <input id="receiptNUmber" th:field="*{receiptNumber}" class="form-control" type="text" placeholder="e.g ABC/123/2020" required>
             </div>
+            -->
 
             <div>
                 <label for="date">Receipt date</label>
