@@ -62,7 +62,7 @@ public class ReceiptController {
 
         receiptService.addNewReceipt(receiptHolder);
 
-        if(receipt.getPaymentDescription().equals("Allocation")){
+        if(receipt.getPaymentDescription().equals("Loan")){
             return "redirect:allocation";
         }else {
             return "redirect:receipt";
