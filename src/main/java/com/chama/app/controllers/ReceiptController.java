@@ -61,7 +61,12 @@ public class ReceiptController {
         receiptHolder.setReceiptType(receipt.getReceiptType());
 
         receiptService.addNewReceipt(receiptHolder);
-        return "redirect:allocation";
+
+        if(receipt.getPaymentDescription().equals("Allocation")){
+            return "redirect:allocation";
+        }else {
+            return "redirect:receipt";
+        }
     }
     
 }
