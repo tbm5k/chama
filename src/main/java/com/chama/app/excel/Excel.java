@@ -45,7 +45,6 @@ public class Excel {
                 Cell currentCell = rowCells.next();
 
                 switch (cellIndex) {
-                    case 0 -> receipt.setReceiptId((int) currentCell.getNumericCellValue());//receipt id
                     case 2 -> receipt.setMemberId((int) currentCell.getNumericCellValue());//member id
                     case 3 -> receipt.setReceiptNumber(currentCell.getStringCellValue());//receipt number
                     case 4 -> receipt.setReceiptAmount((int) currentCell.getNumericCellValue());//amount
