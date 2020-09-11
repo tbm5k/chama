@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Calendar;
 
@@ -68,5 +70,15 @@ public class ReceiptController {
             return "redirect:receipt";
         }
     }
-    
+
+    @GetMapping("/receiptUpload")
+    public String getFileUploadPage(){
+        return "fragments/receipt/receipt-upload";
+    }
+
+    @PostMapping("/uploadReceipt")
+    public String uploadFile(@RequestParam("file") MultipartFile multipartFile){
+        receiptService.addReceipts(multipartFile);
+        return "fragments/receipt/receipt";
+    }
 }

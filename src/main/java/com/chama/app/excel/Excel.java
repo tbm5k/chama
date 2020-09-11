@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Excel {
 
-    public List<Receipt> excelFile(InputStream inputStream) throws IOException {
+    public static List<Receipt> excelFile(InputStream inputStream) throws IOException {
 
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet("Receipts");
