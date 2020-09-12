@@ -71,7 +71,7 @@ public class ReceiptController {
         }
     }
 
-    @GetMapping("/receiptUpload")
+    @GetMapping("/uploadReceipt")
     public String getFileUploadPage(){
         return "fragments/receipt/receipt-upload";
     }

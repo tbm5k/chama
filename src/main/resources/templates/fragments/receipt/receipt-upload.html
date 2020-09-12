@@ -14,7 +14,7 @@
 <body>
 <div layout:fragment="content">
     <h1>Receipt</h1>
-    <form th:action="@{/uploadReceipt}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
+    <form th:action="@{/uploadReceipt}" method="post" enctype="multipart/form-data" style="width:350px;" class="container border rounded px-5 py-3">
         <div class="form-group">
             <label for="excelFile">File</label>
             <input th:name="file" id="excelFile" class="form-control" type="file" placeholder="Upload a file" required>

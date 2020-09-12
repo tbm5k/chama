@@ -35,6 +35,8 @@ public class ReceiptService {
     public void addReceipts(MultipartFile multipartFile) {
         try {
             List<Receipt> receipts = Excel.excelFile(multipartFile.getInputStream());
+            receiptRepo.saveAll(receipts);
+            System.out.println("Receipts saved");
         } catch (IOException e) {
             e.printStackTrace();
         }
