@@ -79,6 +79,6 @@ public class ReceiptController {
     @PostMapping("/uploadReceipt")
     public String uploadFile(@RequestParam("file") MultipartFile multipartFile){
         receiptService.addReceipts(multipartFile);
-        return "fragments/receipt/receipt";
+        return "fragments/receipt/receipt-upload";
     }
 }

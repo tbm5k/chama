@@ -41,29 +41,24 @@ public class Excel {
             Receipt receipt = new Receipt();
 
             int cellIndex = 0;
+            Cell currentCell = null;
             while(rowCells.hasNext()){
-                Cell currentCell = rowCells.next();
+                currentCell = rowCells.next();
 
-                if (cellIndex == 0) {
-                    receipt.setMemberId((int) currentCell.getNumericCellValue());//member id
-                } else if (cellIndex == 1) {
-                    receipt.setReceiptNumber(currentCell.getStringCellValue());//receipt number
-                } else if (cellIndex == 2) {
-                    receipt.setReceiptAmount((int) currentCell.getNumericCellValue());//amount
-                } else if (cellIndex == 3) {
-                    receipt.setReceiptDate((Date) currentCell.getDateCellValue());//date
-                } else if (cellIndex == 4) {
-                    receipt.setPaymentMode(currentCell.getStringCellValue());//payment mode
-                } else if (cellIndex == 5) {
-                    receipt.setPaymentDescription(currentCell.getStringCellValue());//payment description
-                } else if (cellIndex == 7) {
-                    receipt.setContributionType(currentCell.getStringCellValue());//type of contribution
-                } else if (cellIndex == 8) {
-                    receipt.setReceiptType(currentCell.getStringCellValue());//type of receipt
+                switch (cellIndex) {
+                    case 0 -> receipt.setMemberId((int) currentCell.getNumericCellValue());//member id
+                    case 1 -> receipt.setReceiptNumber(currentCell.getStringCellValue());//receipt number
+                    case 2 -> receipt.setReceiptAmount((int) currentCell.getNumericCellValue());//amount
+                    case 3 -> receipt.setReceiptDate(new Date(currentCell.getDateCellValue().getTime()));
+                    case 4 -> receipt.setPaymentMode(currentCell.getStringCellValue());//payment mode
+                    case 5 -> receipt.setPaymentDescription(currentCell.getStringCellValue());//payment description
+                    case 7 -> receipt.setContributionType(currentCell.getStringCellValue());//type of contribution
                 }
 
                 cellIndex++;
             }
+
+            if (cellIndex == 8) receipt.setReceiptType(currentCell.getStringCellValue());//type of receipt
 
             receipts.add(receipt);
 

@@ -1,9 +1,6 @@
 package com.chama.app.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -12,6 +9,7 @@ import java.util.UUID;
 public class Receipt {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "re_id")
     private int receiptId;
     @Column(name = "uuid")
