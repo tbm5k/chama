@@ -66,17 +66,12 @@ public class AuthController {
             return "fragments/authentication/sign-up";
         }else{
 
-            //Defining user parameters
-            User newUser = new User();
-            newUser.setUserId(user.getUserId());
-            newUser.setUuid(user.getUuid());
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
-            newUser.setUsername(user.getUsername());
-            newUser.setEmail(user.getEmail());
-            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+            //Encrypting the user password
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+
             //calling the add method to save the validated user
-            userService.addNewUser(newUser);
+            userService.addNewUser(user);
+
             //generate otp for the new user
             otpGeneration(username, email);
             return "fragments/authentication/otp";

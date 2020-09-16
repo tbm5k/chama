@@ -36,33 +36,17 @@ public class ReceiptController {
     public String setReceipt(Receipt receipt){
 
         Calendar calendar = Calendar.getInstance();
-        Receipt receiptHolder = new Receipt();
 
-        receiptHolder.setReceiptId(receipt.getReceiptId());
-        receiptHolder.setUuid(receipt.getUuid());
-
-        if(receipt.getContributionType().equals("Contributions"))
-            receiptHolder.setMemberId(receipt.getMemberId());
-/*
-        else
-            receiptHolder.setMemberId(null);
- */
-        receiptHolder.setContributionType(receipt.getContributionType());
-
+        if(!receipt.getContributionType().equals("Contributions"))
+            receipt.setMemberId(null);
 
         //setting the receipt number
         int num = receiptService.findTotal();
         String prefix = sequenceService.findChamaSequence(1);//dynamically set the chama id
         String receiptNumber = prefix + "/" + num + "/" + calendar.get(Calendar.YEAR);
+        receipt.setReceiptNumber(receiptNumber);//saving the receipt number
 
-        receiptHolder.setReceiptNumber(receiptNumber);//saving the receipt number
-        receiptHolder.setReceiptAmount(receipt.getReceiptAmount());
-        receiptHolder.setReceiptDate(receipt.getReceiptDate());
-        receiptHolder.setPaymentMode(receipt.getPaymentMode());
-        receiptHolder.setPaymentDescription(receipt.getPaymentDescription());
-        receiptHolder.setReceiptType(receipt.getReceiptType());
-
-        receiptService.addNewReceipt(receiptHolder);
+        receiptService.addNewReceipt(receipt);
 
         if(receipt.getPaymentDescription().equals("Loan")){
             return "redirect:allocation";
