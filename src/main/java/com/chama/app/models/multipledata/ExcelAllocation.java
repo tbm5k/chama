@@ -16,6 +16,8 @@ public class ExcelAllocation {
     private int excelAllocationId;
     @Column(name = "uuid")
     private String uuid;
+    @Column(name = "ch_id_fk")
+    private int chamaId;
     @Column(name = "me_id_fk")
     private int memberId;
     @Column(name = "ea_amount")

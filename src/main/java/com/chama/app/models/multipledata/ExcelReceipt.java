@@ -16,6 +16,8 @@ public class ExcelReceipt {
     private int excelReceiptId;
     @Column(name = "uuid")
     private String uuid;
+    @Column(name = "ch_id_fk")
+    private int chamaId;
     @Column(name = "us_id_fk")
     private int userId;
     @Column(name = "er_number")
@@ -53,6 +55,14 @@ public class ExcelReceipt {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public int getChamaId() {
+        return chamaId;
+    }
+
+    public void setChamaId(int chamaId) {
+        this.chamaId = chamaId;
     }
 
     public int getUserId() {
