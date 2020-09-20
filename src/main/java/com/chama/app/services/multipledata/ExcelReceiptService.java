@@ -20,6 +20,9 @@ public class ExcelReceiptService {
     public void addReceipts(MultipartFile multipartFile) {
         try {
             List<ExcelReceipt> receipts = Excel.excelFile(multipartFile.getInputStream());
+            for(ExcelReceipt receipt : receipts){
+                receipt.setChamaId(1);//dynamically set the chama id(from the session)
+            }
             receiptRepo.saveAll(receipts);
         } catch (IOException e) {
             e.printStackTrace();
