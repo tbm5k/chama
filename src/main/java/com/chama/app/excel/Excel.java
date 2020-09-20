@@ -1,6 +1,6 @@
 package com.chama.app.excel;
 
-import com.chama.app.models.Receipt;
+import com.chama.app.models.multipledata.ExcelAllocation;
 import com.chama.app.models.multipledata.ExcelReceipt;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -12,12 +12,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class Excel {
 
-    public static List<ExcelReceipt> excelFile(InputStream inputStream) throws IOException {
+    public static List<ExcelReceipt> receiptFile(InputStream inputStream) throws IOException {
 
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
@@ -68,5 +69,52 @@ public class Excel {
         workbook.close();
         return receipts;
 
+    }
+
+    public List<ExcelAllocation> allocationFile(InputStream inputStream){
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.getSheetAt(0);
+
+        Iterator<Row> rows = sheet.iterator();
+
+        List<ExcelAllocation> allocations = new ArrayList<>();
+
+        int rowNumber = 0;
+        while(rows.hasNext()){
+            Row currentRow = rows.next();
+
+            //skipping the header
+            if(rowNumber == 0){
+                rowNumber++;
+                continue;
+            }
+
+            Iterator<Cell> cells = currentRow.iterator();
+
+            ExcelAllocation allocation = new ExcelAllocation();
+
+            int cellIndex = 0;
+            Cell cell = null;
+            while (cells.hasNext()){
+                cell = cells.next();
+
+                if(cellIndex == 0){
+
+                }else if(cellIndex == 1){
+
+                }else if(cellIndex == 2){
+
+                }else if(cellIndex == 3){
+
+                }else if(cellIndex == 4){
+
+                }else if(cellIndex == 5){
+
+                }
+            }
+        }
+
+        return Arrays.asList();
     }
 }
