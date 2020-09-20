@@ -1,13 +1,10 @@
 package com.chama.app.services;
 
-import com.chama.app.excel.Excel;
 import com.chama.app.models.Receipt;
 import com.chama.app.repository.ReceiptRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +29,4 @@ public class ReceiptService {
         return receipts.get(receipts.size() -1);
     }
 
-    public void addReceipts(MultipartFile multipartFile) {
-        try {
-            List<Receipt> receipts = Excel.excelFile(multipartFile.getInputStream());
-            receiptRepo.saveAll(receipts);
-            System.out.println("Receipts saved");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
