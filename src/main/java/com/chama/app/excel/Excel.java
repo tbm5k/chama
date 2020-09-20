@@ -23,7 +23,7 @@ public class Excel {
         Sheet sheet = workbook.getSheetAt(0);
         Iterator<Row> rows = sheet.iterator();
 
-        List<Receipt> receipts = new ArrayList<>();
+        List<ExcelReceipt> receipts = new ArrayList<>();
 
         int rowNumber = 0;
 
@@ -39,7 +39,7 @@ public class Excel {
 
             Iterator<Cell> rowCells = currentRow.iterator();
 
-            Receipt receipt = new Receipt();
+            ExcelReceipt receipt = new ExcelReceipt();
 
             int cellIndex = 0;
             Cell currentCell = null;
@@ -47,7 +47,7 @@ public class Excel {
                 currentCell = rowCells.next();
 
                 switch (cellIndex) {
-                    case 0 -> receipt.setMemberId((int) currentCell.getNumericCellValue());//member id
+                    case 0 -> receipt.setUserId((int) currentCell.getNumericCellValue());//member id
                     case 1 -> receipt.setReceiptNumber(currentCell.getStringCellValue());//receipt number
                     case 2 -> receipt.setReceiptAmount((int) currentCell.getNumericCellValue());//amount
                     case 3 -> receipt.setReceiptDate(new Date(currentCell.getDateCellValue().getTime()));
