@@ -25,7 +25,7 @@ public class ExcelAllocation {
     @Column(name = "ea_receipt_date")
     private Date allocationDate;
     @Column(name = "ea_receipt_number")
-    private String receiptNUmber;
+    private String receiptNumber;
     @Column(name = "ea_period")
     private Date allocationPeriod;
 
@@ -73,12 +73,12 @@ public class ExcelAllocation {
         this.allocationDate = allocationDate;
     }
 
-    public String getReceiptNUmber() {
-        return receiptNUmber;
+    public String getReceiptNumber() {
+        return receiptNumber;
     }
 
-    public void setReceiptNUmber(String receiptNUmber) {
-        this.receiptNUmber = receiptNUmber;
+    public void setReceiptNumber(String receiptNumber) {
+        this.receiptNumber = receiptNumber;
     }
 
     public Date getAllocationPeriod() {
