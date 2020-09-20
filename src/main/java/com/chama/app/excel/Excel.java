@@ -1,6 +1,7 @@
 package com.chama.app.excel;
 
 import com.chama.app.models.Receipt;
+import com.chama.app.models.multipledata.ExcelReceipt;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class Excel {
 
-    public static List<Receipt> excelFile(InputStream inputStream) throws IOException {
+    public static List<ExcelReceipt> excelFile(InputStream inputStream) throws IOException {
 
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
