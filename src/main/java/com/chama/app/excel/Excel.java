@@ -71,7 +71,7 @@ public class Excel {
 
     }
 
-    public List<ExcelAllocation> allocationFile(InputStream inputStream){
+    public List<ExcelAllocation> allocationFile(InputStream inputStream) throws IOException {
 
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.getSheetAt(0);
@@ -99,22 +99,25 @@ public class Excel {
             while (cells.hasNext()){
                 cell = cells.next();
 
-                if(cellIndex == 0){
-
-                }else if(cellIndex == 1){
-
-                }else if(cellIndex == 2){
-
-                }else if(cellIndex == 3){
-
-                }else if(cellIndex == 4){
-
-                }else if(cellIndex == 5){
-
+                switch (cellIndex) {
+                    case 0 -> allocation.setMemberId((int) cell.getNumericCellValue());
+                    case 1 -> allocation.setAllocationAmount((int) cell.getNumericCellValue());
+                    case 2 -> allocation.setReceiptNumber(cell.getStringCellValue());
+                    case 3 -> allocation.setAllocationDate(new Date(cell.getDateCellValue().getTime()));
                 }
+
+                cellIndex++;
             }
+
+            if(cellIndex == 4){
+                allocation.setAllocationPeriod(new Date(cell.getDateCellValue().getTime()));
+            }
+
+            allocations.add(allocation);
+
         }
 
-        return Arrays.asList();
+        workbook.close();
+        return allocations;
     }
 }
