@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Allocation</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Allocation</h1>
+    <form th:action="@{/uploadAllocations}" method="post" enctype="multipart/form-data" style="width:350px;" class="container border rounded px-5 py-3">
+        <div class="form-group">
+            <label for="excelFile">File</label>
+            <input th:name="file" id="excelFile" class="form-control" type="file" placeholder="Upload a file" required>
+        </div>
+
+        <button type="submit">Upload</button>
+        <p><a th:href="@{/chamaDashboard}">Chama dashboard</a></p>
+    </form>
+</div>
+</body>
+</html>

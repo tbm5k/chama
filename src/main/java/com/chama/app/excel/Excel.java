@@ -71,7 +71,7 @@ public class Excel {
 
     }
 
-    public List<ExcelAllocation> allocationFile(InputStream inputStream) throws IOException {
+    public static List<ExcelAllocation> allocationFile(InputStream inputStream) throws IOException {
 
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.getSheetAt(0);

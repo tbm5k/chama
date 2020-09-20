@@ -49,6 +49,14 @@ public class ExcelAllocation {
         this.uuid = uuid;
     }
 
+    public int getChamaId() {
+        return chamaId;
+    }
+
+    public void setChamaId(int chamaId) {
+        this.chamaId = chamaId;
+    }
+
     public int getMemberId() {
         return memberId;
     }
