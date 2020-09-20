@@ -1,9 +1,6 @@
 package com.chama.app.models.multipledata;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -12,6 +9,7 @@ import java.util.UUID;
 public class ExcelAllocation {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ea_id")
     private int excelAllocationId;
     @Column(name = "uuid")

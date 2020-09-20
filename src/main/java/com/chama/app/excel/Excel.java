@@ -73,7 +73,7 @@ public class Excel {
 
     public static List<ExcelAllocation> allocationFile(InputStream inputStream) throws IOException {
 
-        Workbook workbook = new XSSFWorkbook();
+        Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
 
         Iterator<Row> rows = sheet.iterator();
@@ -102,8 +102,8 @@ public class Excel {
                 switch (cellIndex) {
                     case 0 -> allocation.setMemberId((int) cell.getNumericCellValue());
                     case 1 -> allocation.setAllocationAmount((int) cell.getNumericCellValue());
-                    case 2 -> allocation.setReceiptNumber(cell.getStringCellValue());
-                    case 3 -> allocation.setAllocationDate(new Date(cell.getDateCellValue().getTime()));
+                    case 2 -> allocation.setAllocationDate(new Date(cell.getDateCellValue().getTime()));
+                    case 3 -> allocation.setReceiptNumber(cell.getStringCellValue());
                 }
 
                 cellIndex++;
