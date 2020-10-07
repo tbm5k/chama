@@ -25,4 +25,10 @@ public class ExcelReceiptController {
         return "fragments/receipt/receipt-upload";
     }
 
+    @GetMapping("/v")
+    public String validate(){
+        receiptService.validateRecords(1);//fetch chama id from session
+        return "fragments/receipt/receipt-upload";
+    }
+
 }

@@ -3,6 +3,8 @@ package com.chama.app.services.multipledata;
 import com.chama.app.excel.Excel;
 import com.chama.app.models.Receipt;
 import com.chama.app.models.multipledata.ExcelReceipt;
+import com.chama.app.repository.ReceiptRepo;
+import com.chama.app.repository.UserIntegrationsRepo;
 import com.chama.app.repository.multipledata.ExcelReceiptRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,10 @@ public class ExcelReceiptService {
 
     @Autowired
     ExcelReceiptRepo receiptRepo;
+    @Autowired
+    UserIntegrationsRepo userIntegrationsRepo;
+    @Autowired
+    ReceiptRepo repo;
 
     public void addReceipts(MultipartFile multipartFile) {
         try {
@@ -27,5 +33,33 @@ public class ExcelReceiptService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void validateRecords(int chamaId){
+
+        List<ExcelReceipt> receipts = (List<ExcelReceipt>) receiptRepo.findAllByChamaId(chamaId);
+
+        for(ExcelReceipt receipt: receipts){
+
+            Receipt newReceipt = new Receipt();
+            if(!userIntegrationsRepo.findByUser(receipt.getUserId()) &&
+                    !repo.findByReceiptNumber(receipt.getReceiptNumber()) ){
+
+                newReceipt.setMemberId(receipt.getUserId());
+                newReceipt.setReceiptNumber(receipt.getReceiptNumber());
+                newReceipt.setReceiptAmount(receipt.getReceiptAmount());
+                newReceipt.setReceiptDate(receipt.getReceiptDate());
+                newReceipt.setPaymentMode(receipt.getPaymentMode());
+                newReceipt.setPaymentDescription(receipt.getPaymentDescription());
+                newReceipt.setContributionType(receipt.getContributionType());
+                newReceipt.setReceiptType(receipt.getReceiptType());
+
+                repo.save(newReceipt);
+                System.out.println("Saved");
+            }else {
+                System.out.println("Error");
+            }
+        }
+
     }
 }

@@ -134,4 +134,22 @@ public class ExcelReceipt {
     public void setReceiptType(String receiptType) {
         this.receiptType = receiptType;
     }
+
+    @Override
+    public String toString() {
+        return "ExcelReceipt{" +
+                "excelReceiptId=" + excelReceiptId +
+                ", uuid='" + uuid + '\'' +
+                ", chamaId=" + chamaId +
+                ", userId=" + userId +
+                ", receiptNumber='" + receiptNumber + '\'' +
+                ", receiptAmount=" + receiptAmount +
+                ", receiptDate=" + receiptDate +
+                ", paymentMode='" + paymentMode + '\'' +
+                ", paymentDescription='" + paymentDescription + '\'' +
+                ", receiptStatus='" + receiptStatus + '\'' +
+                ", contributionType='" + contributionType + '\'' +
+                ", receiptType='" + receiptType + '\'' +
+                '}';
+    }
 }
