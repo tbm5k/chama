@@ -14,6 +14,6 @@ public interface UserIntegrationsRepo extends CrudRepository<UserIntegrations, I
     Iterable<UserIntegrations> findByChamaId(@Param("id") int chamaId);
 
     @Query(nativeQuery = true,
-            value = "SELECT * FROM Ui_User_Integrations WHERE ui.us_id_fk = :userId")
-    boolean findByUser(@Param("userId") int userId);
+            value = "SELECT * FROM Ui_User_Integrations WHERE us_id_fk = :userId")
+    boolean existsByUser(@Param("userId") int userId);
 }

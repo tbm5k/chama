@@ -42,8 +42,8 @@ public class ExcelReceiptService {
         for(ExcelReceipt receipt: receipts){
 
             Receipt newReceipt = new Receipt();
-            if(!userIntegrationsRepo.findByUser(receipt.getUserId()) &&
-                    !repo.findByReceiptNumber(receipt.getReceiptNumber()) ){
+            if(!repo.existsByReceiptNumber(receipt.getReceiptNumber()) &&
+                    userIntegrationsRepo.existsByUser(receipt.getUserId())){
 
                 newReceipt.setMemberId(receipt.getUserId());
                 newReceipt.setReceiptNumber(receipt.getReceiptNumber());
