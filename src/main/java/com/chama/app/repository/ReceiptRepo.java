@@ -4,5 +4,5 @@ import com.chama.app.models.Receipt;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ReceiptRepo extends CrudRepository<Receipt, Integer> {
-    boolean existsByReceiptNumber(String receiptNumber);
+    boolean existsReceiptsByReceiptNumber(String receiptNumber);
 }

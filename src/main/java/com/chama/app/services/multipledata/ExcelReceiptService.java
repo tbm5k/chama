@@ -2,6 +2,7 @@ package com.chama.app.services.multipledata;
 
 import com.chama.app.excel.Excel;
 import com.chama.app.models.Receipt;
+import com.chama.app.models.UserIntegrations;
 import com.chama.app.models.multipledata.ExcelReceipt;
 import com.chama.app.repository.ReceiptRepo;
 import com.chama.app.repository.UserIntegrationsRepo;
@@ -41,9 +42,10 @@ public class ExcelReceiptService {
 
         for(ExcelReceipt receipt: receipts){
 
+            List<UserIntegrations> users = (List<UserIntegrations>) userIntegrationsRepo.findByUser(receipt.getUserId());
+
             Receipt newReceipt = new Receipt();
-            if(!repo.existsByReceiptNumber(receipt.getReceiptNumber()) &&
-                    userIntegrationsRepo.existsByUser(receipt.getUserId())){
+            if(!repo.existsReceiptsByReceiptNumber(receipt.getReceiptNumber()) && users.size() > 0){
 
                 newReceipt.setMemberId(receipt.getUserId());
                 newReceipt.setReceiptNumber(receipt.getReceiptNumber());
