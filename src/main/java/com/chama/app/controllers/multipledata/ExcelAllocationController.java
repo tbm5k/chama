@@ -30,4 +30,10 @@ public class ExcelAllocationController {
         }
         return "fragments/allocation/allocation-upload";
     }
+
+    @GetMapping("/va")
+    public String validate(){
+        allocationService.validateRecords(1);
+        return "fragments/allocation/allocation-upload";
+    }
 }

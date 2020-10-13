@@ -22,9 +22,11 @@ public class ExcelReceiptController {
     @PostMapping("/uploadReceipt")
     public String uploadFile(@RequestParam("file") MultipartFile multipartFile){
         receiptService.addReceipts(multipartFile);
+        receiptService.validateRecords(1);//fetch chama id from session
         return "fragments/receipt/receipt-upload";
     }
 
+    //validation test method
     @GetMapping("/v")
     public String validate(){
         receiptService.validateRecords(1);//fetch chama id from session

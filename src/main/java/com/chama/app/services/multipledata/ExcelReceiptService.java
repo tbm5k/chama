@@ -57,11 +57,7 @@ public class ExcelReceiptService {
                 newReceipt.setReceiptType(receipt.getReceiptType());
 
                 repo.save(newReceipt);
-                System.out.println("Saved");
-            }else {
-                System.out.println("Error");
             }
         }
-
     }
 }
