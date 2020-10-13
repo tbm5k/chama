@@ -9,6 +9,7 @@ import java.util.UUID;
 public class Allocation {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "al_id")
     private int allocationId;
     @Column(name = "uuid")
