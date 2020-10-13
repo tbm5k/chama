@@ -49,7 +49,7 @@ public class ExcelAllocationService {
         for(ExcelAllocation excelAllocation: excelAllocations){
             List<UserIntegrations> users = (List<UserIntegrations>) userIntegrationsRepo.findByUser(excelAllocation.getMemberId());
 
-            if(users.size() > 0 && excelAllocation.getReceiptNumber().startsWith(sequence.getPrefix())){
+            if(users.size() > 0 && excelAllocation.getReceiptNumber().startsWith(sequence.getPrefix()) && !allocationRepo.existsAllocationByReceiptNumber(excelAllocation.getReceiptNumber())){
                 Allocation allocation = new Allocation();
 
                 allocation.setAmount(excelAllocation.getAllocationAmount());
