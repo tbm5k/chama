@@ -24,5 +24,36 @@
         <p><a th:href="@{/chamaDashboard}">Chama dashboard</a></p>
     </form>
 </div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>User id</th>
+            <th>Receipt number</th>
+            <th>Receipt amount</th>
+            <th>Receipt date</th>
+            <th>Payment mode</th>
+            <th>Payment description</th>
+            <th>Receipt status</th>
+            <th>Contribution type</th>
+            <th>Receipt type</th>
+        </tr>
+
+        <tr th:each="receipts : ${receipt}">
+            <td th:text="${receipt.userId}"></td>
+            <td th:text="${receipt.receiptNumber}"></td>
+            <td th:text="${receipt.receiptAmount}"></td>
+            <td th:text="${receipt.receiptDate}"></td>
+            <td th:text="${receipt.paymentMode}"></td>
+            <td th:text="${receipt.paymentDescription}"></td>
+            <td th:text="${receipt.receiptStatus}"></td>
+            <td th:text="${receipt.contributionType}"></td>
+            <td th:text="${receiptreceiptType}"></td>
+        </tr>
+        </thead>
+    </table>
+</div>
+
 </body>
 </html>
