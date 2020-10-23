@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,6 +54,7 @@ public class Excel {
                     case 4 -> receipt.setPaymentMode(currentCell.getStringCellValue());//payment mode
                     case 5 -> receipt.setPaymentDescription(currentCell.getStringCellValue());//payment description
                     case 7 -> receipt.setContributionType(currentCell.getStringCellValue());//type of contribution
+                    case 8 -> receipt.setReceiptType(currentCell.getStringCellValue());//type of contribution
                 }
 
                 cellIndex++;
