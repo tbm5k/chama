@@ -23,18 +23,17 @@ public class ExcelReceiptController {
     @PostMapping("/uploadReceipt")
     public String uploadFile(@RequestParam("file") MultipartFile multipartFile, Model model){
         receiptService.addReceipts(multipartFile);
-        model.addAttribute("receipts", receiptService.getChamaReceipts(1));//dynamically set the chama id
         //receiptService.validateRecords(1);//fetch chama id from session
-        return "fragments/receipt/receipt-upload";
+        return "redirect:receiptPreview";
     }
 
 
     //validation test method
-    @GetMapping("/v")
+    @GetMapping("/receiptPreview")
     public String validate(Model model){
         //receiptService.validateRecords(1);//fetch chama id from session
         model.addAttribute("receipts", receiptService.getChamaReceipts(1));//dynamically set the chama id
-        return "redirect:uploadReceipt";
+        return "fragments/receipt/receipts-preview";
     }
 
 }

@@ -3,57 +3,26 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/app}">
-<head>
+    <head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Receipt</title>
-</head>
-<body>
-<div layout:fragment="content">
-    <h1>Receipt</h1>
-    <form th:action="@{/uploadReceipt}" method="post" enctype="multipart/form-data" style="width:350px;" class="container border rounded px-5 py-3">
-        <div class="form-group">
-            <label for="excelFile">File</label>
-            <input th:name="file" id="excelFile" class="form-control" type="file" placeholder="Upload a file" required>
-        </div>
+        <title>Receipt</title>
+    </head>
+    <body>
+    <div layout:fragment="content">
+        <h1>Receipt</h1>
+        <form th:action="@{/uploadReceipt}" method="post" enctype="multipart/form-data" style="width:350px;" class="container border rounded px-5 py-3">
+            <div class="form-group">
+                <label for="excelFile">File</label>
+                <input th:name="file" id="excelFile" class="form-control" type="file" placeholder="Upload a file" required>
+            </div>
 
-        <button type="submit">Upload</button>
-        <p><a th:href="@{/chamaDashboard}">Chama dashboard</a></p>
-    </form>
-</div>
-
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>User id</th>
-            <th>Receipt number</th>
-            <th>Receipt amount</th>
-            <th>Receipt date</th>
-            <th>Payment mode</th>
-            <th>Payment description</th>
-            <th>Receipt status</th>
-            <th>Contribution type</th>
-            <th>Receipt type</th>
-        </tr>
-
-        <tr th:each="receipts : ${receipt}">
-            <td th:text="${receipt.userId}"></td>
-            <td th:text="${receipt.receiptNumber}"></td>
-            <td th:text="${receipt.receiptAmount}"></td>
-            <td th:text="${receipt.receiptDate}"></td>
-            <td th:text="${receipt.paymentMode}"></td>
-            <td th:text="${receipt.paymentDescription}"></td>
-            <td th:text="${receipt.receiptStatus}"></td>
-            <td th:text="${receipt.contributionType}"></td>
-            <td th:text="${receiptreceiptType}"></td>
-        </tr>
-        </thead>
-    </table>
-</div>
-
-</body>
+            <button type="submit">Upload</button>
+            <p><a th:href="@{/chamaDashboard}">Chama dashboard</a></p>
+        </form>
+    </div>
+    </body>
 </html>
