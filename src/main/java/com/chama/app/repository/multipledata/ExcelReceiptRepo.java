@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface ExcelReceiptRepo extends CrudRepository<ExcelReceipt, Integer> {
 
     Iterable<ExcelReceipt> findAllByChamaId(int chamaId);
+
+    void deleteByChamaId(int chamaId);
 }
