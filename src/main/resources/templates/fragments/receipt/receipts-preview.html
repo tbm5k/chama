@@ -29,26 +29,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form th:action="@{/isValid}">
-                            <tr th:each="receipt : ${receipts}">
-                                <form th:action="@{/editField}" method="get">
-                                    <td th:text="${receipt.userId}"></td>
-                                    <td th:text="${receipt.receiptNumber}"></td>
-                                    <td th:text="${receipt.receiptAmount}"></td>
-                                    <td th:text="${receipt.receiptDate}"></td>
-                                    <td th:text="${receipt.paymentMode}"></td>
-                                    <td th:text="${receipt.paymentDescription}"></td>
-                                    <td th:text="${receipt.receiptStatus}"></td>
-                                    <td th:text="${receipt.contributionType}"></td>
-                                    <td th:text="${receipt.receiptType}"></td>
-                                    <td><button type="submit">Edit</button></td>
-                                </form>
-                            </tr>
-                            <tr>
-                                <button th:name="valid" type="submit" th:value="Cancel">Cancel</button>
-                                <button th:name="valid" type="submit" th:value="Approve">Approve</button>
-                            </tr>
-                        </form>
+                        <tr th:each="receipt : ${receipts}">
+                            <form th:action="@{/editField}" method="get">
+                                <td th:text="${receipt.userId}"></td>
+                                <td th:text="${receipt.receiptNumber}"></td>
+                                <td th:text="${receipt.receiptAmount}"></td>
+                                <td th:text="${receipt.receiptDate}"></td>
+                                <td th:text="${receipt.paymentMode}"></td>
+                                <td th:text="${receipt.paymentDescription}"></td>
+                                <td th:text="${receipt.receiptStatus}"></td>
+                                <td th:text="${receipt.contributionType}"></td>
+                                <td th:text="${receipt.receiptType}"></td>
+                                <td><button type="submit">Edit</button></td>
+                            </form>
+                        </tr>
+                        <tr>
+                            <form th:action="@{/isValid}">
+                                <td><button th:name="valid" type="submit" th:value="Cancel">Cancel</button></td>
+                                <td><button th:name="valid" type="submit" th:value="Approve">Approve</button></td>
+                            </form>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -60,10 +60,13 @@ public class ExcelReceiptController {
                 receipt.setContributionType(excelReceipt.getContributionType());
                 receipt.setReceiptType(excelReceipt.getReceiptType());
 
-                //deleting records of the specified chama to relieve the memory
-                excelReceiptService.clearRecords(1);//dynamically set the chamaId
+                //add receipt to the receipt records
+                receiptService.addNewReceipt(receipt);
             }
-            return "fragments/chama/chama-dashboard";
+
+            //deleting records of the specified chama to relieve the memory
+            excelReceiptService.clearRecords(1);//dynamically set the chamaId
+            return "redirect:chamaDashboard";
         }else {
             return "fragments/receipt/receipt-upload";
         }
