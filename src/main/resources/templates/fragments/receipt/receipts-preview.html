@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="receipt : ${receipts}">
-                            <form th:action="@{/editField}" method="get">
+                            <!--<form th:action="@{/editField}" method="get">-->
                                 <td th:text="${receipt.userId}"></td>
                                 <td th:text="${receipt.receiptNumber}"></td>
                                 <td th:text="${receipt.receiptAmount}"></td>
@@ -40,8 +40,21 @@
                                 <td th:text="${receipt.receiptStatus}"></td>
                                 <td th:text="${receipt.contributionType}"></td>
                                 <td th:text="${receipt.receiptType}"></td>
-                                <td><button type="submit">Edit</button></td>
-                            </form>
+                                <td>
+                                    <form th:action="@{/editField}" th:object="${receipt}" method="post">
+                                        <input type="hidden" name="userId" th:value="${receipt.}">
+                                        <input type="hidden" name="receiptNumber" th:value="${receipt.receiptNumber}">
+                                        <input type="hidden" name="receiptAmount" th:value="${receipt.receiptAmount}">
+                                        <input type="hidden" name="receiptDate" th:value="${receipt.receiptDate}">
+                                        <input type="hidden" name="paymentMode" th:value="${receipt.paymentMode}">
+                                        <input type="hidden" name="paymentDescription" th:value="${receipt.paymentDescription}">
+                                        <input type="hidden" name="receiptStatus" th:value="${receipt.receiptStatus}">
+                                        <input type="hidden" name="contributionType" th:value="${receipt.contributionType}">
+                                        <input type="hidden" name="receiptType" th:value="${receipt.receiptType}">
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                </td>
+                            <!--</form>-->
                         </tr>
                         <tr>
                             <form th:action="@{/isValid}">
