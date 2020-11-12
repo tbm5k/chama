@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ExcelReceiptController {
@@ -72,9 +74,19 @@ public class ExcelReceiptController {
         }
     }
 
-    @GetMapping("/editField")
-    public String editField(){
-        return "Edit me";
+    @PostMapping("/editField")
+    public String editField(@ModelAttribute("receipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
+        model.put("receipt", excelReceipt);
+        return "fragments/receipt/update-receipt";
+    }
+
+    @GetMapping("/updateExcelReceipt")
+    public String excelReceiptUpdate(@ModelAttribute("receipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
+
+        excelReceiptService.updateRecord(excelReceipt);
+
+
+        return "receiptPreview";
     }
 
 }
