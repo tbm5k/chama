@@ -68,4 +68,12 @@ public class ExcelReceiptService {
     public void clearRecords(int chamaId) {
         receiptRepo.deleteByChamaId(chamaId);
     }
+
+    public void updateRecord(ExcelReceipt excelReceipt) {
+        ExcelReceipt receipt = receiptRepo.findById(excelReceipt.getExcelReceiptId()).get();
+
+        if(receipt != null) {
+            receiptRepo.save(excelReceipt);
+        }
+    }
 }
