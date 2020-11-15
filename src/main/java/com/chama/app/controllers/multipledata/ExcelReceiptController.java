@@ -75,18 +75,18 @@ public class ExcelReceiptController {
     }
 
     @PostMapping("/editField")
-    public String editField(@ModelAttribute("receipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
-        model.put("receipt", excelReceipt);
+    public String editField(@ModelAttribute("excelReceipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
+        model.put("excelReceipt", excelReceipt);
         return "fragments/receipt/update-receipt";
     }
 
-    @GetMapping("/updateExcelReceipt")
+    @PostMapping("/updateExcelReceipt")
     public String excelReceiptUpdate(@ModelAttribute("receipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
 
         excelReceiptService.updateRecord(excelReceipt);
 
 
-        return "receiptPreview";
+        return "redirect:receiptPreview";
     }
 
 }
