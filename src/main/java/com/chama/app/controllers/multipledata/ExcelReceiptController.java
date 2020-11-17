@@ -81,11 +81,8 @@ public class ExcelReceiptController {
     }
 
     @PostMapping("/updateExcelReceipt")
-    public String excelReceiptUpdate(@ModelAttribute("receipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
-
+    public String excelReceiptUpdate(@ModelAttribute("receipt")ExcelReceipt excelReceipt){
         excelReceiptService.updateRecord(excelReceipt);
-
-
         return "redirect:receiptPreview";
     }
 

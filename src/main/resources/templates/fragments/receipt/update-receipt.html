@@ -14,19 +14,42 @@
         <div layout:fragment="content">
             <h2>Update receipt</h2>
             <div>
-                <form th:action="@{/updateExcelReceipt}" th:object="${excelReceipt}" method="post">
+                <form th:action="@{/updateExcelReceipt}" th:object="${excelReceipt}" method="post"  style="width:350px;" class="container border rounded px-5 py-3">
 
-                    <input type="number" name="excelReceiptId" th:value="${excelReceipt.excelReceiptId}" readonly="">
-                    <input type="number" name="userId" th:value="${excelReceipt.userId}">
-                    <input type="text" name="receiptNumber" th:value="${excelReceipt.receiptNumber}">
-                    <input type="number" name="receiptAmount" th:value="${excelReceipt.receiptAmount}">
-                    <input type="date" name="receiptDate" th:value="${excelReceipt.receiptDate}">
-                    <input type="text" name="paymentMode" th:value="${excelReceipt.paymentMode}">
-                    <input type="text" name="paymentDescription" th:value="${excelReceipt.paymentDescription}">
-                    <input type="text" name="contributionType" th:value="${excelReceipt.contributionType}">
-                    <input type="text" name="receiptType" th:value="${excelReceipt.receiptType}">
+                    <div class="form-group">
+                        <label for="userId">User ID</label>
+                        <input id="userId" type="number" name="userId" th:value="${excelReceipt.userId}">
+                    </div>
+                    <div class="form-group">
+                        <label for="receiptNumber">Receipt number</label>
+                        <input id="receiptNumber" type="text" name="receiptNumber" th:value="${excelReceipt.receiptNumber}">
+                    </div>
+                    <div class="form-group">
+                        <label for="receiptAmount">Receipt amount</label>
+                        <input id="receiptAmount" type="number" name="receiptAmount" th:value="${excelReceipt.receiptAmount}">
+                    </div>
+                    <div class="form-group">
+                        <label for="receiptDate">Receipt date</label>
+                        <input id="receiptDate" type="date" name="receiptDate" th:value="${excelReceipt.receiptDate}">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMode">Payment mode</label>
+                        <input id="paymentMode" type="text" name="paymentMode" th:value="${excelReceipt.paymentMode}">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentDescription">Payment description</label>
+                        <input id="paymentDescription" type="text" name="paymentDescription" th:value="${excelReceipt.paymentDescription}">
+                    </div>
+                    <div class="form-group">
+                        <label for="contributionType">Contribution type</label>
+                        <input id="contributionType" type="text" name="contributionType" th:value="${excelReceipt.contributionType}">
+                    </div>
+                    <div class="form-group">
+                        <label for="receiptType">Receipt type</label>
+                        <input id="receiptType" type="text" name="receiptType" th:value="${excelReceipt.receiptType}">
+                    </div>
 
-                    <button type="submit">UPDATE</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
         </div>

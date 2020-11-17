@@ -30,37 +30,35 @@
                     </thead>
                     <tbody>
                         <tr th:each="receipt : ${receipts}">
-                            <!--<form th:action="@{/editField}" method="get">-->
-                                <td th:text="${receipt.userId}"></td>
-                                <td th:text="${receipt.receiptNumber}"></td>
-                                <td th:text="${receipt.receiptAmount}"></td>
-                                <td th:text="${receipt.receiptDate}"></td>
-                                <td th:text="${receipt.paymentMode}"></td>
-                                <td th:text="${receipt.paymentDescription}"></td>
-                                <td th:text="${receipt.receiptStatus}"></td>
-                                <td th:text="${receipt.contributionType}"></td>
-                                <td th:text="${receipt.receiptType}"></td>
-                                <td>
-                                    <form th:action="@{/editField}" th:object="${receipt}" method="post">
-                                        <input type="hidden" name="excelReceiptId" th:value="${receipt.excelReceiptId}">
-                                        <input type="hidden" name="userId" th:value="${receipt.userId}">
-                                        <input type="hidden" name="receiptNumber" th:value="${receipt.receiptNumber}">
-                                        <input type="hidden" name="receiptAmount" th:value="${receipt.receiptAmount}">
-                                        <input type="hidden" name="receiptDate" th:value="${receipt.receiptDate}">
-                                        <input type="hidden" name="paymentMode" th:value="${receipt.paymentMode}">
-                                        <input type="hidden" name="paymentDescription" th:value="${receipt.paymentDescription}">
-                                        <input type="hidden" name="receiptStatus" th:value="${receipt.receiptStatus}">
-                                        <input type="hidden" name="contributionType" th:value="${receipt.contributionType}">
-                                        <input type="hidden" name="receiptType" th:value="${receipt.receiptType}">
-                                        <button type="submit">Edit</button>
-                                    </form>
-                                </td>
-                            <!--</form>-->
+                            <td th:text="${receipt.userId}"></td>
+                            <td th:text="${receipt.receiptNumber}"></td>
+                            <td th:text="${receipt.receiptAmount}"></td>
+                            <td th:text="${receipt.receiptDate}"></td>
+                            <td th:text="${receipt.paymentMode}"></td>
+                            <td th:text="${receipt.paymentDescription}"></td>
+                            <td th:text="${receipt.receiptStatus}"></td>
+                            <td th:text="${receipt.contributionType}"></td>
+                            <td th:text="${receipt.receiptType}"></td>
+                            <td>
+                                <form th:action="@{/editField}" th:object="${receipt}" method="post">
+                                    <input type="hidden" name="excelReceiptId" th:value="${receipt.excelReceiptId}">
+                                    <input type="hidden" name="userId" th:value="${receipt.userId}">
+                                    <input type="hidden" name="receiptNumber" th:value="${receipt.receiptNumber}">
+                                    <input type="hidden" name="receiptAmount" th:value="${receipt.receiptAmount}">
+                                    <input type="hidden" name="receiptDate" th:value="${receipt.receiptDate}">
+                                    <input type="hidden" name="paymentMode" th:value="${receipt.paymentMode}">
+                                    <input type="hidden" name="paymentDescription" th:value="${receipt.paymentDescription}">
+                                    <input type="hidden" name="receiptStatus" th:value="${receipt.receiptStatus}">
+                                    <input type="hidden" name="contributionType" th:value="${receipt.contributionType}">
+                                    <input type="hidden" name="receiptType" th:value="${receipt.receiptType}">
+                                    <button type="submit" class="btn btn-outline-primary">Edit</button>
+                                </form>
+                            </td>
                         </tr>
                         <tr>
                             <form th:action="@{/isValid}">
-                                <td><button th:name="valid" type="submit" th:value="Cancel">Cancel</button></td>
-                                <td><button th:name="valid" type="submit" th:value="Approve">Approve</button></td>
+                                <td><button th:name="valid" type="submit" th:value="Cancel" class="btn btn-danger">Cancel</button></td>
+                                <td><button th:name="valid" type="submit" th:value="Approve" class="btn btn-success">Approve</button></td>
                             </form>
                         </tr>
                     </tbody>
