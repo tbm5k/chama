@@ -73,7 +73,17 @@ public class ExcelReceiptService {
         ExcelReceipt receipt = receiptRepo.findById(excelReceipt.getExcelReceiptId()).get();
 
         if(receipt != null) {
-            receiptRepo.save(excelReceipt);
+
+            receipt.setUserId(excelReceipt.getUserId());
+            receipt.setReceiptNumber(excelReceipt.getReceiptNumber());
+            receipt.setReceiptAmount(excelReceipt.getReceiptAmount());
+            receipt.setReceiptDate(excelReceipt.getReceiptDate());
+            receipt.setPaymentMode(excelReceipt.getPaymentMode());
+            receipt.setPaymentDescription(excelReceipt.getPaymentDescription());
+            receipt.setContributionType(excelReceipt.getContributionType());
+            receipt.setReceiptType(excelReceipt.getReceiptType());
+
+            receiptRepo.save(receipt);
         }
     }
 }
