@@ -17,7 +17,7 @@
                 <form th:action="@{/updateExcelReceipt}" th:object="${excelReceipt}" method="post">
 
                     <input type="number" name="excelReceiptId" th:value="${excelReceipt.excelReceiptId}" readonly="">
-                    <input type="number" name="userId" th:value="${excelReceipt.userId}" readonly="">
+                    <input type="number" name="userId" th:value="${excelReceipt.userId}">
                     <input type="text" name="receiptNumber" th:value="${excelReceipt.receiptNumber}">
                     <input type="number" name="receiptAmount" th:value="${excelReceipt.receiptAmount}">
                     <input type="date" name="receiptDate" th:value="${excelReceipt.receiptDate}">
