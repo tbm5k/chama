@@ -63,4 +63,8 @@ public class ExcelAllocationService {
         }
 
     }
+
+    public List<ExcelAllocation> getChamaAllocations(int chamaId) {
+        return (List<ExcelAllocation>) excelAllocationRepo.findAllByChamaId(chamaId);
+    }
 }
