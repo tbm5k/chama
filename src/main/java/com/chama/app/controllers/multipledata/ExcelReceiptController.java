@@ -70,6 +70,8 @@ public class ExcelReceiptController {
             excelReceiptService.clearRecords(1);//dynamically set the chamaId
             return "redirect:chamaDashboard";
         }else {
+            //clear the incorrect records for re-uploading
+            excelReceiptService.clearRecords(1);//dynamically set the chamaId
             return "fragments/receipt/receipt-upload";
         }
     }
