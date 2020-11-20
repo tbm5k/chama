@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Allocations preview</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <h1>Allocations preview</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Receipt number</th>
+                        <th>Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="allocation : ${allocations}">
+                        <td th:text="${allocation.memberId}"></td>
+                        <td th:text="${allocation.allocationAmount}"></td>
+                        <td th:text="${allocation.allocationDate}"></td>
+                        <td th:text="${allocation.receiptNumber}"></td>
+                        <td th:text="${allocation.allocationPeriod}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
