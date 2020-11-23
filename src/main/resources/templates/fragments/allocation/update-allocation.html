@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Update allocation</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <h1>Update allocation</h1>
+            <form th:object="allocation" method="post"  style="width:350px;" class="container border rounded px-5 py-3">
+                <div class="form-group">
+                    <label for="memberId">Member ID</label>
+                    <input name="memberId" id="memberId" th:value="${allocation.memberId}">
+                </div>
+                <div class="form-group">
+                    <label for="allocationAmount">Amount</label>
+                    <input name="allocationAmount" id="allocationAmount" th:value="${allocation.allocationAmount}">
+                </div>
+                <div class="form-group">
+                    <label for="allocationDate">Date</label>
+                    <input name="allocationDate" id="allocationDate" th:value="${allocation.allocationDate}">
+                </div>
+                <div class="form-group">
+                    <label for="receiptNumber">Receipt number</label>
+                    <input name="receiptNumber" id="receiptNumber" th:value="${allocation.receiptNumber}">
+                </div>
+                <div class="form-group">
+                    <label for="allocationPeriod">Period</label>
+                    <input name="allocationPeriod" id="allocationPeriod" th:value="${allocation.allocationPeriod}">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
