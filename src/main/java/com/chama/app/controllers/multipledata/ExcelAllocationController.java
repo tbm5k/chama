@@ -2,6 +2,7 @@ package com.chama.app.controllers.multipledata;
 
 import com.chama.app.models.Allocation;
 import com.chama.app.models.multipledata.ExcelAllocation;
+import com.chama.app.services.AllocationService;
 import com.chama.app.services.multipledata.ExcelAllocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,12 @@ import java.util.List;
 public class ExcelAllocationController {
 
     @Autowired
-    ExcelAllocationService allocationService;
+    ExcelAllocationService excelAllocationService;
+    @Autowired
+    AllocationService allocationService;
+
+    List<ExcelAllocation> allocationList;
+    final int chamaId = 1;//fetch the chama ID from the session
 
     @GetMapping("/uploadAllocations")
     public String getFileUploadPage(){
@@ -28,17 +34,41 @@ public class ExcelAllocationController {
     @PostMapping("/uploadAllocations")
     public String uploadFile(@RequestParam("file") MultipartFile multipartFile){
         try {
-            allocationService.addAllocations(multipartFile);
+            excelAllocationService.addAllocations(multipartFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "fragments/allocation/allocation-upload";
+        return "redirect:allocationsPreview";
     }
 
     @GetMapping("/allocationsPreview")
     public String validate(Model model){
-        List<ExcelAllocation> allocationList = allocationService.getChamaAllocations(1);//dynamically set the chama id
+        allocationList = excelAllocationService.getChamaAllocations(chamaId);
         model.addAttribute("allocations", allocationList);
         return "fragments/allocation/allocations-preview";
+    }
+
+    @GetMapping("/isAllocationsValid")
+    public String isValid(@RequestParam String valid){
+
+        if(valid.equals("Approve")){
+            for(ExcelAllocation excelAllocation : allocationList){
+                Allocation allocation = new Allocation();
+                allocation.setAmount(excelAllocation.getAllocationAmount());
+                allocation.setReceiptDate(excelAllocation.getAllocationDate());
+                allocation.setReceiptNumber(excelAllocation.getReceiptNumber());
+                allocation.setAllocationPeriod(excelAllocation.getAllocationPeriod());
+                allocation.setMemberId(excelAllocation.getMemberId());
+
+                //add allocation to the DB
+                allocationService.addAllocation(allocation);
+            }
+            excelAllocationService.clearRecords(chamaId);
+            return "redirect:chamaDashboard";
+        }else {
+            //clear records for re-uploading
+            excelAllocationService.clearRecords(chamaId);
+            return "fragments/allocation/allocation-upload";
+        }
     }
 }

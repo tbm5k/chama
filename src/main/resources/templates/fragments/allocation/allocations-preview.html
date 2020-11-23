@@ -32,6 +32,12 @@
                         <td th:text="${allocation.receiptNumber}"></td>
                         <td th:text="${allocation.allocationPeriod}"></td>
                     </tr>
+                    <tr>
+                        <form th:action="@{/isAllocationsValid}">
+                            <td><button th:name="valid" type="submit" th:value="Cancel" class="btn btn-danger">Cancel</button></td>
+                            <td><button th:name="valid" type="submit" th:value="Approve" class="btn btn-success">Approve</button></td>
+                        </form>
+                    </tr>
                 </tbody>
             </table>
         </div>

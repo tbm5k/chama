@@ -25,6 +25,7 @@ public class ExcelReceiptController {
     ReceiptService receiptService;
 
     List<ExcelReceipt> receiptList;
+    final int chamaId = 1; //fetch the chamaId from the session
 
     @GetMapping("/uploadReceipt")
     public String getFileUploadPage(){
@@ -42,12 +43,12 @@ public class ExcelReceiptController {
     @GetMapping("/receiptPreview")
     public String validate(Model model){
         //receiptService.validateRecords(1);//fetch chama id from session
-        receiptList = excelReceiptService.getChamaReceipts(1); //dynamically set the chama id
+        receiptList = excelReceiptService.getChamaReceipts(chamaId);
         model.addAttribute("receipts", receiptList);
         return "fragments/receipt/receipts-preview";
     }
 
-    @GetMapping("/isValid")
+    @GetMapping("/isReceiptsValid")
     public String isValid(@RequestParam String valid){
         if(valid.equals("Approve")){
             for(ExcelReceipt excelReceipt: receiptList){
@@ -67,11 +68,11 @@ public class ExcelReceiptController {
             }
 
             //deleting records of the specified chama to relieve the memory
-            excelReceiptService.clearRecords(1);//dynamically set the chamaId
+            excelReceiptService.clearRecords(chamaId);
             return "redirect:chamaDashboard";
         }else {
             //clear the incorrect records for re-uploading
-            excelReceiptService.clearRecords(1);//dynamically set the chamaId
+            excelReceiptService.clearRecords(chamaId);
             return "fragments/receipt/receipt-upload";
         }
     }

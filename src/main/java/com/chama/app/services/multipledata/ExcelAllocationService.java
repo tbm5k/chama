@@ -2,7 +2,6 @@ package com.chama.app.services.multipledata;
 
 import com.chama.app.excel.Excel;
 import com.chama.app.models.Allocation;
-import com.chama.app.models.Chama;
 import com.chama.app.models.Sequence;
 import com.chama.app.models.UserIntegrations;
 import com.chama.app.models.multipledata.ExcelAllocation;
@@ -66,5 +65,9 @@ public class ExcelAllocationService {
 
     public List<ExcelAllocation> getChamaAllocations(int chamaId) {
         return (List<ExcelAllocation>) excelAllocationRepo.findAllByChamaId(chamaId);
+    }
+
+    public void clearRecords(int chamaId) {
+        excelAllocationRepo.deleteByChamaId(chamaId);
     }
 }
