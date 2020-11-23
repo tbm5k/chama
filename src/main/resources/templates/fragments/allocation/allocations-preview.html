@@ -31,6 +31,16 @@
                         <td th:text="${allocation.allocationDate}"></td>
                         <td th:text="${allocation.receiptNumber}"></td>
                         <td th:text="${allocation.allocationPeriod}"></td>
+                        <td>
+                            <form th:action="@{/editAllocationField}" th:object="${allocation}" method="post">
+                                <input type="hidden" name="memberId" th:value="${allocation.memberId}">
+                                <input type="hidden" name="allocationAmount" th:value="${allocation.allocationAmount}">
+                                <input type="hidden" name="allocationDate" th:value="${allocation.allocationDate}">
+                                <input type="hidden" name="receiptNumber" th:value="${allocation.receiptNumber}">
+                                <input type="hidden" name="allocationPeriod" th:value="${allocation.allocationPeriod}">
+                                <button type="submit" class="btn btn-outline-primary">Edit</button>
+                            </form>
+                        </td>
                     </tr>
                     <tr>
                         <form th:action="@{/isAllocationsValid}">

@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ExcelAllocationController {
@@ -70,5 +72,17 @@ public class ExcelAllocationController {
             excelAllocationService.clearRecords(chamaId);
             return "fragments/allocation/allocation-upload";
         }
+    }
+
+    @PostMapping("/editAllocationField")
+    public String editField(@ModelAttribute("allocation")ExcelAllocation excelAllocation, Map<String, ExcelAllocation> model){
+        model.put("allocation", excelAllocation);
+        return "fragments/allocation/update-allocation";
+    }
+
+    @PostMapping("/updateExcelAllocation")
+    public String excelAllocationUpdate(@ModelAttribute("allocation")ExcelAllocation excelAllocation){
+        excelAllocationService.updateRecord(excelAllocation);
+        return "redirect:allocationsPreview";
     }
 }

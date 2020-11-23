@@ -70,4 +70,18 @@ public class ExcelAllocationService {
     public void clearRecords(int chamaId) {
         excelAllocationRepo.deleteByChamaId(chamaId);
     }
+
+    public void updateRecord(ExcelAllocation excelAllocation) {
+        ExcelAllocation allocation = excelAllocationRepo.findById(excelAllocation.getExcelAllocationId()).get();
+
+        if(allocation != null){
+            allocation.setMemberId(excelAllocation.getMemberId());
+            allocation.setReceiptNumber(excelAllocation.getReceiptNumber());
+            allocation.setAllocationAmount(excelAllocation.getAllocationAmount());
+            allocation.setAllocationPeriod(excelAllocation.getAllocationPeriod());
+            allocation.setAllocationDate(excelAllocation.getAllocationDate());
+
+            excelAllocationRepo.save(allocation);
+        }
+    }
 }

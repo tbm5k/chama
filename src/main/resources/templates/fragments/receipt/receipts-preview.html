@@ -40,7 +40,7 @@
                             <td th:text="${receipt.contributionType}"></td>
                             <td th:text="${receipt.receiptType}"></td>
                             <td>
-                                <form th:action="@{/editField}" th:object="${receipt}" method="post">
+                                <form th:action="@{/editReceiptField}" th:object="${receipt}" method="post">
                                     <input type="hidden" name="excelReceiptId" th:value="${receipt.excelReceiptId}">
                                     <input type="hidden" name="userId" th:value="${receipt.userId}">
                                     <input type="hidden" name="receiptNumber" th:value="${receipt.receiptNumber}">

@@ -77,7 +77,7 @@ public class ExcelReceiptController {
         }
     }
 
-    @PostMapping("/editField")
+    @PostMapping("/editReceiptField")
     public String editField(@ModelAttribute("excelReceipt")ExcelReceipt excelReceipt, Map<String, ExcelReceipt> model){
         model.put("excelReceipt", excelReceipt);
         return "fragments/receipt/update-receipt";
