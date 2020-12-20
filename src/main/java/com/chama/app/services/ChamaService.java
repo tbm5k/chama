@@ -5,6 +5,8 @@ import com.chama.app.repository.ChamaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ChamaService {
 
@@ -18,5 +20,9 @@ public class ChamaService {
     public int getChamaId(String name) {
         Chama chama = chamaRepo.findByName(name);
         return chama.getChamaId();
+    }
+
+    public Optional<Chama> getChamaObject(int chamaId){
+        return chamaRepo.findById(chamaId);
     }
 }

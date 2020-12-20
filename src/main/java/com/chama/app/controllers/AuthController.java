@@ -33,18 +33,18 @@ public class AuthController {
     public String username;
     public String email;
 
-    @GetMapping("/sign-in")
+    @GetMapping("/signIn")
     public String loginPage(){
         return "fragments/authentication/sign-in";
     }
 
-    @GetMapping("/sign-up")
+    @GetMapping("/signUp")
     public String signUpPage(Model model){
         model.addAttribute("user", new User());
         return "fragments/authentication/sign-up";
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/signUp")
     public String addNewUser(User user, Model model){
 
         //getting the username and email from the submitted form by the client

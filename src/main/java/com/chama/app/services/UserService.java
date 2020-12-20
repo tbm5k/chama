@@ -14,4 +14,7 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public User getUserObject(int userId) {
+        return userRepo.findById(userId);
+    }
 }

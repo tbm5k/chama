@@ -13,7 +13,7 @@
     <body>
 
         <div layout:fragment="content">
-            <form th:action="@{/sign-up}" method="post" th:object="${user}" style="width:350px;" class="container border rounded px-5 py-3">
+            <form th:action="@{/signUp}" method="post" th:object="${user}" style="width:350px;" class="container border rounded px-5 py-3">
                 <h2>Sign Up</h2>
                 <div class="form-group">
                     <label for="firstName">First name</label>
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label for="confirmPassword">Repeat Password</label>
                     <input id="confirmPassword" th:field="*{confirmPassword}" class="form-control" type="password" placeholder="Repeat Password" required>
-                    <p><a th:href="@{/sign-in}">Sign in</a></p>
+                    <p><a th:href="@{/signIn}">Sign in</a></p>
                     <div th:if="${passwordError}" th:text="${passwordError}" class="alert alert-danger" role="alert"></div>
                 </div>
 

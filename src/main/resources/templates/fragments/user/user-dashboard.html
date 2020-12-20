@@ -26,6 +26,11 @@
                         <tr th:each="invite : ${invites}">
                             <td th:text="${invite.userForeignKey}"></td>
                             <td th:text="${invite.chamaForeignKey}"></td>
+                            <td>
+                                <form th:object="${}">
+
+                                </form>
+                            </td>
                         </tr>
                     </thead>
                 </table>

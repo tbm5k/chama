@@ -20,6 +20,10 @@ public class UserRoles {
     @JoinColumn(name = "ro_id_fk")
     private Roles roleForeignKey;
 
+    @ManyToOne
+    @JoinColumn(name = "us_id_fk")
+    private User userForeignKey;
+
     @OneToMany(mappedBy = "userRoles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<UserIntegrations> userIntegrations;
 
