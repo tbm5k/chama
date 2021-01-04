@@ -27,8 +27,10 @@
                             <td th:text="${invite.userForeignKey}"></td>
                             <td th:text="${invite.chamaForeignKey}"></td>
                             <td>
-                                <form th:object="${}">
-
+                                <form th:action="@{/acceptInvite}" th:object="${invite}" method="post">
+                                    <input type="hidden" name="userForeignKey" th:value="*{userForeignKey}">
+                                    <input type="hidden" name="chamaForeignKey" th:value="*{chamaForeignKey}">
+                                    <button type="submit" class="btn btn-success">Accept</button>
                                 </form>
                             </td>
                         </tr>
