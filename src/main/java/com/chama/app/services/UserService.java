@@ -15,6 +15,6 @@ public class UserService {
     }
 
     public User getUserObject(int userId) {
-        return userRepo.findById(userId);
+        return userRepo.findByUserId(userId);
     }
 }

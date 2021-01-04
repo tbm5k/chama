@@ -7,4 +7,5 @@ public interface ChamaRepo extends CrudRepository<Chama, Integer> {
 
     Chama findByName(String name);
 
+    Chama findByChamaId(int chamaId);
 }

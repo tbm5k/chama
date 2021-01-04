@@ -22,7 +22,7 @@ public class ChamaService {
         return chama.getChamaId();
     }
 
-    public Optional<Chama> getChamaObject(int chamaId){
-        return chamaRepo.findById(chamaId);
+    public Chama getChamaObject(int chamaId){
+        return chamaRepo.findByChamaId(chamaId);
     }
 }

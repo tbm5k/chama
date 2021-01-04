@@ -59,6 +59,14 @@ public class UserRoles {
         this.roleForeignKey = roleForeignKey;
     }
 
+    public User getUserForeignKey() {
+        return userForeignKey;
+    }
+
+    public void setUserForeignKey(User userForeignKey) {
+        this.userForeignKey = userForeignKey;
+    }
+
     public List<UserIntegrations> getUserIntegrations() {
         return userIntegrations;
     }
