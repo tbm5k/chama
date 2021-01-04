@@ -29,22 +29,27 @@ public class UserIntegrationsService {
     }
 
     public void addNewUser(Invite invite) {
-        UserIntegrations userIntegrations = new UserIntegrations();
 
-        userIntegrations.setChama(chamaService.getChamaObject(invite.getChamaForeignKey()));
-        userIntegrations.setUser(userService.getUserObject(invite.getUserForeignKey()));
-
+        //creating a user role on relationship on acceptance of chama invitation
         UserRoles userRole = new UserRoles();
 
-        //fetching the user-role object to use it's id as for the user-roles relationship
-        Roles role = rolesService.getRoleId("USER");
-        userRole.setUserRoleId(role.getRoleId());
+        Roles role = rolesService.getRoleObject("USER");
+        User user = userService.getUserObject(invite.getUserForeignKey());
+
+        userRole.setUserForeignKey(user);
+        userRole.setRoleForeignKey(role);
 
         //save the new user-role relationship
         userRolesService.addUserRole(userRole);
 
+        //creating a relationship between the user and the chama and setting his/her role in the chama
+        UserIntegrations userIntegrations = new UserIntegrations();//initializing a ui obj
+
+        userIntegrations.setChama(chamaService.getChamaObject(invite.getChamaForeignKey()));
+        userIntegrations.setUser(userService.getUserObject(invite.getUserForeignKey()));
         userIntegrations.setUserRoles(userRolesService.getUserRoleObject(invite.getUserForeignKey()));
 
+        //saving the user integrations object
         integrationsRepo.save(userIntegrations);
     }
 }
