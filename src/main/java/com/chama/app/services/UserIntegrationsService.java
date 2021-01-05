@@ -21,6 +21,8 @@ public class UserIntegrationsService {
     UserRolesService userRolesService;
     @Autowired
     RolesService rolesService;
+    @Autowired
+    InviteService inviteService;
 
     public List<UserIntegrations> getChamaMembers(int chamaId) {
         List<UserIntegrations> members = new ArrayList<>();
@@ -51,5 +53,8 @@ public class UserIntegrationsService {
 
         //saving the user integrations object
         integrationsRepo.save(userIntegrations);
+
+        //deleting the invitation
+        inviteService.clearInvite(invite.getInviteId());
     }
 }

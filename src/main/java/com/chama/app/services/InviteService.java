@@ -24,4 +24,8 @@ public class InviteService {
         inviteRepo.findByUserForeignKey(userId).forEach(inviteList::add);
         return inviteList;
     }
+
+    public void clearInvite(int inviteId) {
+        inviteRepo.deleteById(inviteId);
+    }
 }
