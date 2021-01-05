@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserIntegrationsService {
@@ -55,6 +56,6 @@ public class UserIntegrationsService {
         integrationsRepo.save(userIntegrations);
 
         //deleting the invitation
-        inviteService.clearInvite(invite.getInviteId());
+        inviteService.clearInvite(invite.getUserForeignKey(), invite.getChamaForeignKey());
     }
 }

@@ -25,7 +25,7 @@ public class InviteService {
         return inviteList;
     }
 
-    public void clearInvite(int inviteId) {
-        inviteRepo.deleteById(inviteId);
+    public void clearInvite(int userId, int chamaId) {
+        inviteRepo.deleteInviteByUserForeignKeyAndAndChamaForeignKey(userId, chamaId);
     }
 }
