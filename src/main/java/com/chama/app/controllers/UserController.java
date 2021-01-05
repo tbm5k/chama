@@ -28,6 +28,6 @@ public class UserController {
     @PostMapping("/acceptInvite")
     public String acceptInvite(@ModelAttribute("inv")Invite invite){
         userIntegrationsService.addNewUser(invite);
-        return "return:userDashboard";
+        return "redirect:userDashboard";
     }
 }
