@@ -2,6 +2,7 @@ package com.chama.app.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "ur_user_roles")
@@ -39,8 +40,8 @@ public class UserRoles {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUuid() {
+        this.uuid = String.valueOf(UUID.randomUUID());
     }
 
     public char getDashboard() {
