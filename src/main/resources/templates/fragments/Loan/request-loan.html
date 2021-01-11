@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/app}">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Request Loan</title>
+</head>
+    <body>
+        <div layout:fragment="content">
+            <h3>Request Loan</h3>
+            <div>
+                <form th:object="${}" th:action="@{/allocation}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
+
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input id="" th:field="*{}" class="form-control" type="number" placeholder="" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Allocate</button>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
