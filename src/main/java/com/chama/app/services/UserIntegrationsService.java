@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserIntegrationsService {
@@ -57,5 +56,9 @@ public class UserIntegrationsService {
 
         //deleting the invitation
         inviteService.clearInvite(invite.getUserForeignKey(), invite.getChamaForeignKey());
+    }
+
+    public UserIntegrations getChamaMember(int userId, int chamaId) {
+        return integrationsRepo.findByUserAndChama(userId, chamaId);
     }
 }

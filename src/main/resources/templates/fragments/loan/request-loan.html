@@ -14,13 +14,13 @@
         <div layout:fragment="content">
             <h3>Request Loan</h3>
             <div>
-                <form th:object="${}" th:action="@{/allocation}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
+                <form th:object="${loan}" th:action="@{/requestLoan}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
 
                     <div class="form-group">
                         <label for=""></label>
-                        <input id="" th:field="*{}" class="form-control" type="number" placeholder="" required>
+                        <input id="" th:field="*{amount}" class="form-control" type="number" placeholder="" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Allocate</button>
+                    <button type="submit" class="btn btn-primary">Request</button>
 
                 </form>
             </div>

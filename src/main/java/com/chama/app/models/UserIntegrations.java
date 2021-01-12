@@ -29,6 +29,9 @@ public class UserIntegrations {
     @OneToMany(mappedBy = "memberId")
     private List<Allocation> allocations;
 
+    @OneToMany(mappedBy = "member")
+    private List<Loan> loans;
+
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
