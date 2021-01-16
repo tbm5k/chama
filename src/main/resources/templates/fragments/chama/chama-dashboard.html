@@ -52,6 +52,14 @@
                         <tr th:each="loan : ${loans}">
                             <td th:text="${loan.member.getUser().getUsername()}"></td>
                             <td th:text="${loan.amount}"></td>
+                            <td>
+                                <form th:object="${loan}" th:action="@{/acceptLoan}" method="post">
+                                    <input type="hidden" th:value="*{member.getUserIntegrationsId()}">
+                                    <input type="hidden" th:value="*{amount}">
+                                    <button type="submit" class="btn btn-success">Accept</button>
+                                    <a th:href="@{/denyLoanRequest/{loanId}(loanId = ${loan.getLoanId()})}" class="btn btn-danger">Deny</a>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

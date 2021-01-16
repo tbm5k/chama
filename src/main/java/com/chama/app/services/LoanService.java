@@ -28,4 +28,8 @@ public class LoanService {
         }
         return loanList;
     }
+
+    public void denyLoan(int loanId) {
+        loanRepo.deleteById(loanId);
+    }
 }
