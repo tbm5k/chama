@@ -39,6 +39,23 @@
                     <p><a th:href="@{/uploadAllocations}">Upload allocations</a></p>
                 </div>
             </div>
+            <div>
+                <h3>Loan requests</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="loan : ${loans}">
+                            <td th:text="${loan.member.getUser().getUsername()}"></td>
+                            <td th:text="${loan.amount}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
