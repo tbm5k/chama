@@ -17,8 +17,14 @@
                 <form th:object="${loan}" th:action="@{/requestLoan}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
 
                     <div class="form-group">
-                        <label for=""></label>
-                        <input id="" th:field="*{amount}" class="form-control" type="number" placeholder="" required>
+                        <h6>Amount</h6>
+                        <label for="amount"></label>
+                        <input id="amount" th:field="*{amount}" class="form-control" type="number" placeholder="5000" required>
+                    </div>
+                    <div class="form-group">
+                        <h6>Loan period</h6>
+                        <label for="period"></label>
+                        <input id="period" th:field="*{loanPeriod}" class="form-control" type="date" placeholder="e.g 24/07/2020" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Request</button>
 
