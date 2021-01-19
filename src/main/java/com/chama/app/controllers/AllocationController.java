@@ -23,8 +23,8 @@ public class AllocationController {
     @GetMapping("/allocation")
     public String allocationPage(Model model){
         model.addAttribute("allocation", new Allocation());
-        model.addAttribute("members", userIntegrationsService.getChamaMembers(1));
-        return "fragments/allocation/allocation.html";
+        model.addAttribute("members", userIntegrationsService.getChamaMembers(2));
+        return "fragments/allocation/allocation";
     }
 
     @PostMapping("/allocation")

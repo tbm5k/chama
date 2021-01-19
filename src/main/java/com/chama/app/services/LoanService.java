@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanService {
@@ -31,5 +32,13 @@ public class LoanService {
 
     public void denyLoan(int loanId) {
         loanRepo.deleteById(loanId);
+    }
+
+    public Loan getLoan(int loanId) {
+        return loanRepo.findById(loanId).get();
+    }
+
+    public Loan getQueuedLoan(int memberId) {
+        return loanRepo.findByMember(memberId);
     }
 }

@@ -1,14 +1,17 @@
 package com.chama.app.controllers;
 
+import com.chama.app.models.Allocation;
 import com.chama.app.models.Loan;
-import com.chama.app.models.UserIntegrations;
+import com.chama.app.models.Receipt;
+import com.chama.app.services.AllocationService;
 import com.chama.app.services.LoanService;
+import com.chama.app.services.ReceiptService;
 import com.chama.app.services.UserIntegrationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -19,6 +22,10 @@ public class LoanController {
     LoanService loanService;
     @Autowired
     UserIntegrationsService userIntegrationsService;
+    @Autowired
+    AllocationService allocationService;
+    @Autowired
+    ReceiptService receiptService;
 
     @GetMapping("/requestLoan")
     public String getLoanPage(Model model){
@@ -28,7 +35,6 @@ public class LoanController {
 
     @PostMapping("/requestLoan")
     public String requestLoan(Loan loan){
-        loan.setUuid();
         //fetch member from the session;
         loan.setMember(userIntegrationsService.getChamaMember(1, 2));
         loanService.addLoan(loan);
@@ -41,8 +47,15 @@ public class LoanController {
         return "redirect:/chamaDashboard";
     }
 
-    @GetMapping("/acceptLoan")
-    public String acceptLoan(){
-        return "redirect:chamaDashboard";
+    @PostMapping("/acceptLoan")
+    public String acceptLoan(Loan loan, Model model){
+        Loan dbLoan = loanService.getLoan(loan.getLoanId());
+
+        Receipt receipt = new Receipt();
+        receipt.setReceiptAmount(dbLoan.getAmount());
+
+        model.addAttribute("receipt", receipt);
+        model.addAttribute("members", dbLoan.getMember());
+        return "fragments/receipt/receipt";
     }
 }

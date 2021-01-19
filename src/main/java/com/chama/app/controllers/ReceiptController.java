@@ -1,7 +1,10 @@
 package com.chama.app.controllers;
 
+import com.chama.app.models.Allocation;
+import com.chama.app.models.Loan;
 import com.chama.app.models.Receipt;
 import com.chama.app.models.UserIntegrations;
+import com.chama.app.services.LoanService;
 import com.chama.app.services.ReceiptService;
 import com.chama.app.services.SequenceService;
 import com.chama.app.services.UserIntegrationsService;
@@ -24,19 +27,21 @@ public class ReceiptController {
     ReceiptService receiptService;
     @Autowired
     SequenceService sequenceService;
+    @Autowired
+    LoanService loanService;
+
+    private int chamaId = 2;//get chama from the session obj
 
     @GetMapping("/receipt")
     public String getReceipt(Model model){
-        //dynamically set the chama id
-        List<UserIntegrations> list = userIntegrationsService.getChamaMembers(1);
-        model.addAttribute("members", userIntegrationsService.getChamaMembers(1));
+        List<UserIntegrations> list = userIntegrationsService.getChamaMembers(chamaId);
+        model.addAttribute("members", userIntegrationsService.getChamaMembers(chamaId));
         model.addAttribute("receipt", new Receipt());
         return "fragments/receipt/receipt";
     }
 
     @PostMapping("/receipt")
-    public String setReceipt(Receipt receipt){
-
+    public String setReceipt(Receipt receipt, Model model){
         Calendar calendar = Calendar.getInstance();
 
         if(!receipt.getContributionType().equals("Contributions"))
@@ -44,13 +49,23 @@ public class ReceiptController {
 
         //setting the receipt number
         int num = receiptService.findTotal();
-        String prefix = sequenceService.findChamaSequence(1);//dynamically set the chama id
+        String prefix = sequenceService.findChamaSequence(chamaId);
         String receiptNumber = prefix + "/" + num + "/" + calendar.get(Calendar.YEAR);
         receipt.setReceiptNumber(receiptNumber);//saving the receipt number
 
         receiptService.addNewReceipt(receipt);
 
         if(receipt.getPaymentDescription().equals("Loan")){
+            Loan loan = loanService.getQueuedLoan(receipt.getMemberId());
+
+            Allocation allocation = new Allocation();
+            allocation.setAmount(receipt.getReceiptAmount());
+            allocation.setReceiptDate(receipt.getReceiptDate());
+            allocation.setReceiptNumber(receipt.getReceiptNumber());
+            allocation.setAllocationPeriod(loan.getLoanPeriod());
+
+            model.addAttribute("allocation", allocation);
+            model.addAttribute("members", receipt.getReceiptId());
             return "redirect:allocation";
         }else {
             return "redirect:receipt";
