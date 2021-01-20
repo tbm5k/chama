@@ -1,8 +1,10 @@
 package com.chama.app.controllers.multipledata;
 
 import com.chama.app.models.Receipt;
+import com.chama.app.models.UserIntegrations;
 import com.chama.app.models.multipledata.ExcelReceipt;
 import com.chama.app.services.ReceiptService;
+import com.chama.app.services.UserIntegrationsService;
 import com.chama.app.services.multipledata.ExcelReceiptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class ExcelReceiptController {
     ExcelReceiptService excelReceiptService;
     @Autowired
     ReceiptService receiptService;
+    @Autowired
+    UserIntegrationsService userIntegrationsService;
 
     List<ExcelReceipt> receiptList;
     final int chamaId = 1; //fetch the chamaId from the session
@@ -53,7 +57,8 @@ public class ExcelReceiptController {
         if(valid.equals("Approve")){
             for(ExcelReceipt excelReceipt: receiptList){
                 Receipt receipt = new Receipt();
-                receipt.setMemberId(excelReceipt.getUserId());
+                UserIntegrations member = userIntegrationsService.getChamaMember(excelReceipt.getUserId(), excelReceipt.getChamaId());
+                receipt.setMember(member);
                 receipt.setReceiptNumber(excelReceipt.getReceiptNumber());
                 receipt.setReceiptAmount(excelReceipt.getReceiptAmount());
                 receipt.setReceiptDate(excelReceipt.getReceiptDate());

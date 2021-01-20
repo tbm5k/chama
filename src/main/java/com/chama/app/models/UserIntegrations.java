@@ -32,6 +32,9 @@ public class UserIntegrations {
     @OneToMany(mappedBy = "member")
     private List<Loan> loans;
 
+    @OneToMany(mappedBy = "member")
+    private List<Receipt> receipts;
+
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
@@ -82,5 +85,21 @@ public class UserIntegrations {
 
     public void setAllocations(List<Allocation> allocations) {
         this.allocations = allocations;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public List<Receipt> getReceipts() {
+        return receipts;
+    }
+
+    public void setReceipts(List<Receipt> receipts) {
+        this.receipts = receipts;
     }
 }

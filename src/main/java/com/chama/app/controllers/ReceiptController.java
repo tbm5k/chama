@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class ReceiptController {
         Calendar calendar = Calendar.getInstance();
 
         if(!receipt.getContributionType().equals("Contributions"))
-            receipt.setMemberId(null);
+            receipt.setMember(null);
 
         //setting the receipt number
         int num = receiptService.findTotal();
@@ -56,7 +55,7 @@ public class ReceiptController {
         receiptService.addNewReceipt(receipt);
 
         if(receipt.getPaymentDescription().equals("Loan")){
-            Loan loan = loanService.getQueuedLoan(receipt.getMemberId());
+            Loan loan = loanService.getQueuedLoan(receipt.getMember().getUserIntegrationsId());
 
             Allocation allocation = new Allocation();
             allocation.setAmount(receipt.getReceiptAmount());

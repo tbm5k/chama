@@ -14,8 +14,11 @@ public class Receipt {
     private int receiptId;
     @Column(name = "uuid")
     private String uuid;
-    @Column(name = "us_id_fk")
-    private Integer memberId;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "ui_id_fk")
+    private UserIntegrations member;
+
     @Column(name = "re_number")
     private String receiptNumber;
     @Column(name = "re_amount")
@@ -53,12 +56,12 @@ public class Receipt {
         this.uuid = uuid;
     }
 
-    public Integer getMemberId() {
-        return memberId;
+    public UserIntegrations getMember() {
+        return member;
     }
 
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
+    public void setMember(UserIntegrations member) {
+        this.member = member;
     }
 
     public String getReceiptNumber() {

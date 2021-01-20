@@ -47,7 +47,9 @@ public class ExcelReceiptService {
             Receipt newReceipt = new Receipt();
             if(!repo.existsReceiptsByReceiptNumber(receipt.getReceiptNumber()) && users.size() > 0){
 
-                newReceipt.setMemberId(receipt.getUserId());
+                UserIntegrations member = (UserIntegrations) userIntegrationsRepo.findByUser(receipt.getUserId());
+
+                newReceipt.setMember(member);
                 newReceipt.setReceiptNumber(receipt.getReceiptNumber());
                 newReceipt.setReceiptAmount(receipt.getReceiptAmount());
                 newReceipt.setReceiptDate(receipt.getReceiptDate());
