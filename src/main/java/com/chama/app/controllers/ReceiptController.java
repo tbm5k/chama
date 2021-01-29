@@ -43,6 +43,8 @@ public class ReceiptController {
     public String setReceipt(Receipt receipt, Model model){
         Calendar calendar = Calendar.getInstance();
 
+        receipt.setMember(userIntegrationsService.getMember(receipt.getMemberId()).get());
+
         /*
         bug during form submission in that the member object does not get sent
          */

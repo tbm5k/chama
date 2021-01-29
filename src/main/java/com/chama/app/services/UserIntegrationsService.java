@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserIntegrationsService {
@@ -60,5 +61,9 @@ public class UserIntegrationsService {
 
     public UserIntegrations getChamaMember(int userId, int chamaId) {
         return integrationsRepo.findByUserAndChama(userId, chamaId);
+    }
+
+    public Optional<UserIntegrations> getMember(int memberId) {
+        return integrationsRepo.findById(memberId);
     }
 }

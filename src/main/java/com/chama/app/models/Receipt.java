@@ -19,6 +19,9 @@ public class Receipt {
     @JoinColumn(name = "ui_id_fk")
     private UserIntegrations member;
 
+    @Transient
+    private int memberId;
+
     @Column(name = "re_number")
     private String receiptNumber;
     @Column(name = "re_amount")
@@ -62,6 +65,14 @@ public class Receipt {
 
     public void setMember(UserIntegrations member) {
         this.member = member;
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public String getReceiptNumber() {

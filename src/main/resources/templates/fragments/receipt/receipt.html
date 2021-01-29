@@ -36,8 +36,8 @@
 
                     <div class="dropdown-list">
                         <label>Member: </label>
-                        <select th:field="*{member}">
-                            <option th:each="member : ${members}" th:value="${member}" th:text="${member.user.username}"></option>
+                        <select th:field="*{memberId}">
+                            <option th:each="member : ${members}" th:value="${member.userIntegrationsId}" th:text="${member.user.username}"></option>
                         </select>
                     </div>
 
