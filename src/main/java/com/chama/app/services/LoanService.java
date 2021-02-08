@@ -41,4 +41,8 @@ public class LoanService {
     public Loan getQueuedLoan(int memberId) {
         return loanRepo.findByMember(memberId);
     }
+
+    public void clearLoan(int loanId) {
+        loanRepo.deleteById(loanId);
+    }
 }

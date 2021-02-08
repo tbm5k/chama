@@ -69,6 +69,8 @@ public class ReceiptController {
             allocation.setReceiptNumber(receipt.getReceiptNumber());
             allocation.setAllocationPeriod(loan.getLoanPeriod());
 
+            loanService.clearLoan(loan.getLoanId());
+
             model.addAttribute("allocation", allocation);
             model.addAttribute("members", receipt.getMember());
             return "fragments/allocation/allocation";
