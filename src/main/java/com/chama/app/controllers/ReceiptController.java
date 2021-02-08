@@ -70,8 +70,8 @@ public class ReceiptController {
             allocation.setAllocationPeriod(loan.getLoanPeriod());
 
             model.addAttribute("allocation", allocation);
-            model.addAttribute("members", receipt.getReceiptId());
-            return "redirect:allocation";
+            model.addAttribute("members", receipt.getMember());
+            return "fragments/allocation/allocation";
         }else {
             return "redirect:receipt";
         }

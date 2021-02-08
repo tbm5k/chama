@@ -30,7 +30,9 @@ public class AllocationController {
     @PostMapping("/allocation")
     public String createAllocation(Allocation allocation){
 
-        allocation.setReceiptNumber(receiptService.getLastReceipt().getReceiptNumber());
+        if(allocation.getReceiptNumber().equals(null)){
+            allocation.setReceiptNumber(receiptService.getLastReceipt().getReceiptNumber());
+        }
 
         allocationService.addAllocation(allocation);
         
