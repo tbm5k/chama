@@ -30,10 +30,6 @@ public class AllocationController {
     @PostMapping("/allocation")
     public String createAllocation(Allocation allocation){
 
-        if(allocation.getReceiptNumber().equals(null)){
-            allocation.setReceiptNumber(receiptService.getLastReceipt().getReceiptNumber());
-        }
-
         allocationService.addAllocation(allocation);
         
         return "redirect:chamaDashboard";

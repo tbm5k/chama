@@ -45,6 +45,10 @@
                 <label for="period">Allocation period</label>
                 <input id="period" th:field="*{allocationPeriod}" class="form-control" type="date" placeholder="e.g 24/07/2020" required>
             </div>
+
+            <div>
+                <input id="receiptNumber" th:field="*{receiptNumber}" class="form-control" type="hidden">
+            </div>
             <button type="submit" class="btn btn-primary">Allocate</button>
 
         </form>
