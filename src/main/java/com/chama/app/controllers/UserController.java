@@ -31,4 +31,9 @@ public class UserController {
         userIntegrationsService.addNewUser(invite);
         return "redirect:userDashboard";
     }
+
+    @GetMapping("/makeContribution")
+    public String makeContribution(){
+        return "fragments/contribution/contribution";
+    }
 }
