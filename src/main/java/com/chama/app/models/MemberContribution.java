@@ -14,8 +14,11 @@ public class MemberContribution {
     private int memberContributionId;
     @Column(name = "uuid")
     private String uuid;
-    @Column(name = "ui_id_fk")
-    private int memberId;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "ui_id_fk")
+    private UserIntegrations member;
+
     @Column(name = "mc_amount")
     private int amount;
     @Column(name = "mc_month")
@@ -45,12 +48,12 @@ public class MemberContribution {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
 
-    public int getMemberId() {
-        return memberId;
+    public UserIntegrations getMember() {
+        return member;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setMember(UserIntegrations member) {
+        this.member = member;
     }
 
     public int getAmount() {

@@ -35,6 +35,9 @@ public class UserIntegrations {
     @OneToMany(mappedBy = "member")
     private List<Receipt> receipts;
 
+    @OneToMany(mappedBy = "member")
+    private List<MemberContribution> contributions;
+
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
     }
@@ -101,5 +104,13 @@ public class UserIntegrations {
 
     public void setReceipts(List<Receipt> receipts) {
         this.receipts = receipts;
+    }
+
+    public List<MemberContribution> getContributions() {
+        return contributions;
+    }
+
+    public void setContributions(List<MemberContribution> contributions) {
+        this.contributions = contributions;
     }
 }
