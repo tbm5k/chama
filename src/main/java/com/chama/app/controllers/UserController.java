@@ -1,6 +1,7 @@
 package com.chama.app.controllers;
 
 import com.chama.app.models.Invite;
+import com.chama.app.models.MemberContribution;
 import com.chama.app.services.InviteService;
 import com.chama.app.services.UserIntegrationsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class UserController {
     }
 
     @GetMapping("/makeContribution")
-    public String makeContribution(){
+    public String makeContribution(Model model){
+        model.addAttribute("contribution", new MemberContribution());
         return "fragments/contribution/contribution";
     }
 }
