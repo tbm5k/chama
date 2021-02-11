@@ -27,6 +27,8 @@ public class MemberContribution {
     private String receiptNumber;
     @Column(name = "mc_receipt_date")
     private Date receiptDate;
+    @Column(name = "mc_confirm")
+    private boolean confirm;
 
     public MemberContribution() {
         this.uuid = String.valueOf(UUID.randomUUID());
@@ -86,5 +88,13 @@ public class MemberContribution {
 
     public void setReceiptDate(Date receiptDate) {
         this.receiptDate = receiptDate;
+    }
+
+    public boolean isConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(boolean confirm) {
+        this.confirm = confirm;
     }
 }
