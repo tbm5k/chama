@@ -5,6 +5,7 @@ import com.chama.app.models.Invite;
 import com.chama.app.models.Sequence;
 import com.chama.app.repository.ChamaRepo;
 import com.chama.app.services.ChamaService;
+import com.chama.app.services.ContributionService;
 import com.chama.app.services.LoanService;
 import com.chama.app.services.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ChamaController {
     SequenceService sequenceService;
     @Autowired
     LoanService loanService;
+    @Autowired
+    ContributionService contributionService;
 
     @GetMapping("/chama")
     public String createChamaTemplate(Model model){
@@ -37,6 +40,7 @@ public class ChamaController {
         int chamaId = 2;//chama id from the session
         model.addAttribute("invite", new Invite());
         model.addAttribute("loans", loanService.getLoanRequests(chamaId));
+        model.addAttribute("contributions", contributionService.getMembersContributions(chamaId));
         return "fragments/chama/chama-dashboard";
     }
 

@@ -39,6 +39,7 @@
                     <p><a th:href="@{/uploadAllocations}">Upload allocations</a></p>
                 </div>
             </div>
+
             <div>
                 <h3>Loan requests</h3>
                 <table>
@@ -59,6 +60,21 @@
                                     <a th:href="@{/denyLoanRequest/{loanId}(loanId = ${loan.getLoanId()})}" class="btn btn-danger">Deny</a>
                                 </form>
                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Contributions</h3>
+                <table>
+                    <thead>
+                        <th>Username</th>
+                        <th>Amount</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="contribution : ${contributions}">
+                            <td th:text="${contribution.member.user.getUsername()}"></td>
+                            <td th:text="${contribution.getAmount()}"></td>
                         </tr>
                     </tbody>
                 </table>

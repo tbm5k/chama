@@ -22,7 +22,6 @@ public class ContributionController {
         UserIntegrations member = userIntegrationsService.getMember(11).get();//get member obj from session
 
         memberContribution.setMember(member);
-        memberContribution.setConfirm(false);
         contributionService.makeContribution(memberContribution);
         return "fragments/user/user-dashboard";
     }
