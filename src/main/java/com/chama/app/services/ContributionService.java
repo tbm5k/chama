@@ -30,4 +30,8 @@ public class ContributionService {
 
         return contributionList;
     }
+
+    public void denyContribution(int contributionId) {
+        contributionRepo.deleteById(contributionId);
+    }
 }
