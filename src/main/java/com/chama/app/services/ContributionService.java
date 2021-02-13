@@ -34,4 +34,13 @@ public class ContributionService {
     public void denyContribution(int contributionId) {
         contributionRepo.deleteById(contributionId);
     }
+
+    public void updateContribution(MemberContribution contribution) {
+
+        contributionRepo.save(contribution);
+    }
+
+    public MemberContribution getMembersContribution(int memberContributionId) {
+        return contributionRepo.findById(memberContributionId).get();
+    }
 }

@@ -33,4 +33,12 @@ public class ContributionController {
         contributionService.denyContribution(contributionId);
         return "redirect:/chamaDashboard";
     }
+
+    @PostMapping("/acceptContribution")
+    public String acceptContribution(MemberContribution contribution){
+        MemberContribution memberContribution = contributionService.getMembersContribution(contribution.getMemberContributionId());
+        memberContribution.setConfirm(true);
+        contributionService.updateContribution(memberContribution);
+        return "redirecr:/chamaDashboard";
+    }
 }
