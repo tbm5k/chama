@@ -2,6 +2,7 @@ package com.chama.app.controllers;
 
 import com.chama.app.models.Chama;
 import com.chama.app.models.Invite;
+import com.chama.app.models.MemberContribution;
 import com.chama.app.models.Sequence;
 import com.chama.app.repository.ChamaRepo;
 import com.chama.app.services.ChamaService;
@@ -14,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ChamaController {
@@ -40,7 +44,17 @@ public class ChamaController {
         int chamaId = 2;//chama id from the session
         model.addAttribute("invite", new Invite());
         model.addAttribute("loans", loanService.getLoanRequests(chamaId));
-        model.addAttribute("contributions", contributionService.getMembersContributions(chamaId));
+
+        List<MemberContribution> contributionList = contributionService.getMembersContributions(chamaId);
+        List<MemberContribution> contributions = new ArrayList<>();
+
+        for(MemberContribution contribution : contributionList){
+            if(!contribution.isConfirm()){
+                contributions.add(contribution);
+            }
+        }
+
+        model.addAttribute("contributions", contributions);
         return "fragments/chama/chama-dashboard";
     }
 
