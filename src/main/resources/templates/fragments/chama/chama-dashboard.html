@@ -76,7 +76,7 @@
                             <td th:text="${contribution.member.user.getUsername()}"></td>
                             <td th:text="${contribution.getAmount()}"></td>
                             <td>
-                                <form th:action="@{/acceptContribution}" th:object="${contribution}" method="post">
+                                <form th:action="@{/acceptContribution}" th:object="${contribution}" method="get">
                                     <input type="hidden" name="memberContributionId" th:value="*{memberContributionId}">
                                     <button class="btn btn-success" type="submit">Verify</button>
                                     <a th:href="@{/denyContribution/{id}(id = ${contribution.getMemberContributionId()})}" class="btn btn-danger">Deny</a>

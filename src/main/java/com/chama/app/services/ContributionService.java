@@ -36,11 +36,16 @@ public class ContributionService {
     }
 
     public void updateContribution(MemberContribution contribution) {
-
         contributionRepo.save(contribution);
     }
 
     public MemberContribution getMembersContribution(int memberContributionId) {
         return contributionRepo.findById(memberContributionId).get();
+    }
+
+    public MemberContribution getMemberContribution(int userIntegrationsId) {
+        List<MemberContribution> contributions = contributionRepo.findAllByMember(userIntegrationsId);
+        //returning the last member contribution which is the latest contribution
+        return contributions.get(contributions.size()-1);
     }
 }
