@@ -26,9 +26,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Request</button>
                     <div>
-                        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
-                        <div class="alert alert-primary" role="alert" th:text="${error}" th:if="${error}"></div>
-                        <div class="alert alert-primary" role="alert" th:text="${bugs}" th:if="${bugs}"></div>
+                        <div th:if="${message}" th:text="${message}"class="alert alert-primary" role="alert"></div>
                     </div>
 
                 </form>

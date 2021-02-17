@@ -37,7 +37,7 @@ public class LoanController {
     }
 
     @PostMapping("/requestLoan")
-    public String requestLoan(Loan loan, RedirectAttributes redirectAttributes){
+    public String requestLoan(Loan loan, Model model){
         int memberId = 11;
         int totalAmount = 0;
         //fetch member from the session;
@@ -49,21 +49,22 @@ public class LoanController {
          */
 
         try {
-            List<MemberContribution> contributionList = contributionService.getMembersContributions(memberId);
+            List<MemberContribution> contributionList = contributionService.getAllMemberContributions(memberId);
 
             for(MemberContribution contribution : contributionList){
                 totalAmount += contribution.getAmount();
             }
 
             if(loan.getAmount() > totalAmount){
-                redirectAttributes.addAttribute("error", "You have " + totalAmount + " which is low to acquire a loan. Request for a guarantor");
+                model.addAttribute("message", "You have " + totalAmount + " which is low to acquire a loan. Request for a guarantor");
+                return "fragments/Loan/request-loan";
             }else{
-                redirectAttributes.addAttribute("success", "Loan requested");
+                model.addAttribute("message", "Loan requested");
                 loanService.addLoan(loan);
             }
-
         }catch (Exception e){
-            redirectAttributes.addAttribute("bugs","Error while validating loan");
+            model.addAttribute("message","Error while validating loan");
+            return "fragments/Loan/request-loan";
         }
 
         return "redirect:requestLoan";

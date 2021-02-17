@@ -48,4 +48,8 @@ public class ContributionService {
         //returning the last member contribution which is the latest contribution
         return contributions.get(contributions.size()-1);
     }
+
+    public List<MemberContribution> getAllMemberContributions(int memberId){
+        return contributionRepo.findAllByMember(memberId);
+    }
 }
