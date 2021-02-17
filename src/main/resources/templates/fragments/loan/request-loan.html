@@ -25,6 +25,11 @@
                         <input id="period" th:field="*{loanPeriod}" class="form-control" type="date" placeholder="e.g 24/07/2020" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Request</button>
+                    <div>
+                        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+                        <div class="alert alert-primary" role="alert" th:text="${error}" th:if="${error}"></div>
+                        <div class="alert alert-primary" role="alert" th:text="${bugs}" th:if="${bugs}"></div>
+                    </div>
 
                 </form>
             </div>
