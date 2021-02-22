@@ -27,6 +27,16 @@
                     <button type="submit" class="btn btn-primary">Request</button>
                     <div>
                         <div th:if="${message}" th:text="${message}"class="alert alert-primary" role="alert"></div>
+                        <table>
+                            <thead>
+                                <tr>Username</tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${members}" th:each="member : ${members}">
+                                    <td th:text="${member.user.getUsername()}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </form>

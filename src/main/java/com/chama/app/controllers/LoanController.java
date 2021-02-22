@@ -1,9 +1,6 @@
 package com.chama.app.controllers;
 
-import com.chama.app.models.Allocation;
-import com.chama.app.models.Loan;
-import com.chama.app.models.MemberContribution;
-import com.chama.app.models.Receipt;
+import com.chama.app.models.*;
 import com.chama.app.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,7 +54,22 @@ public class LoanController {
             }
 
             if(loan.getAmount() > totalAmount){
+
+                //fetch member from the session
+                int chamaId = userIntegrationsService.getMember(memberId).get().getChama().getChamaId();
                 model.addAttribute("message", "You have " + totalAmount + " which is low to acquire a loan. Request for a guarantor");
+
+                List<UserIntegrations> chamaMembers = userIntegrationsService.getChamaMembers(chamaId);
+                List<UserIntegrations> noLoanMembers = new ArrayList<>();
+
+                //filtering members to only display members who have no loan so that they can be a guarantor
+                for(UserIntegrations member : chamaMembers){
+                    if(member.getLoans() == null && member.getUserIntegrationsId() != memberId){
+                        noLoanMembers.add(member);
+                    }
+                }
+
+                model.addAttribute("members", noLoanMembers);
                 return "fragments/Loan/request-loan";
             }else{
                 model.addAttribute("message", "Loan requested");
