@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,16 +58,34 @@ public class LoanController {
                 model.addAttribute("message", "You have " + totalAmount + " which is low to acquire a loan. Request for a guarantor");
 
                 List<UserIntegrations> chamaMembers = userIntegrationsService.getChamaMembers(chamaId);
-                List<UserIntegrations> noLoanMembers = new ArrayList<>();
+                List<UserIntegrations> eligibleLoaners = new ArrayList<>();
 
-                //filtering members to only display members who have no loan so that they can be a guarantor
+                /*
+                filtering members to only display members who are eligible to grand loans
+                -potential guarantor has to has no loan
+                -potential guarantor's worth has to be more than what he/she is to grant
+                 */
                 for(UserIntegrations member : chamaMembers){
-                    if(member.getLoans() == null && member.getUserIntegrationsId() != memberId){
-                        noLoanMembers.add(member);
+
+                    List<MemberContribution> guarantorContributions = member.getContributions();
+                    int guarantorWorth = 0;
+                    for(MemberContribution contribution: guarantorContributions){
+                        guarantorWorth += contribution.getAmount();
+                    }
+
+                    if(
+                            (member.getUserIntegrationsId() != memberId) &&
+                            (member.getLoans() == null) &&
+                            (guarantorWorth > (totalAmount - loan.getAmount()) )){
+                        eligibleLoaners.add(member);
                     }
                 }
 
-                model.addAttribute("members", noLoanMembers);
+                if(eligibleLoaners.size() != 0){
+                    model.addAttribute("members", eligibleLoaners);
+                }else {
+                    model.addAttribute("nullGuarantors", "There are no eligible guarantors");
+                }
                 return "fragments/Loan/request-loan";
             }else{
                 model.addAttribute("message", "Loan requested");

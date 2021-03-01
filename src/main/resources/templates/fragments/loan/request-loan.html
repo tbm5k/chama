@@ -27,12 +27,13 @@
                     <button type="submit" class="btn btn-primary">Request</button>
                     <div>
                         <div th:if="${message}" th:text="${message}"class="alert alert-primary" role="alert"></div>
-                        <table>
+                        <div th:if="${nullGuarantors}" th:text="${nullGuarantors}" class="alert alert-danger" role="alert"></div>
+                        <table th:if="${members}" th:each="member : ${members}">
                             <thead>
                                 <tr>Username</tr>
                             </thead>
                             <tbody>
-                                <tr th:if="${members}" th:each="member : ${members}">
+                                <tr>
                                     <td th:text="${member.user.getUsername()}"></td>
                                     <form method="post">
 
@@ -41,6 +42,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <p><a th:href="@{/userDashboard}">Dashboard</a></p>
                     </div>
 
                 </form>
