@@ -38,6 +38,9 @@ public class UserIntegrations {
     @OneToMany(mappedBy = "member")
     private List<MemberContribution> contributions;
 
+    @OneToMany(mappedBy = "guarantor")
+    private List<Guarantor> grantList;
+
     public UserIntegrations() {
         this.uuid = String.valueOf(UUID.randomUUID());
     }

@@ -34,6 +34,10 @@
                             <tbody>
                                 <tr th:if="${members}" th:each="member : ${members}">
                                     <td th:text="${member.user.getUsername()}"></td>
+                                    <form method="post">
+
+                                        <button class="btn btn-success" type="submit">Request</button>
+                                    </form>
                                 </tr>
                             </tbody>
                         </table>

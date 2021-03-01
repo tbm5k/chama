@@ -2,6 +2,7 @@ package com.chama.app.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +23,9 @@ public class Loan {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ui_id_fk")
     private UserIntegrations member;
+
+    @OneToMany(mappedBy = "loan")
+    private List<Guarantor> guarantors;
 
     public Loan() {
         this.uuid = String.valueOf(UUID.randomUUID());
