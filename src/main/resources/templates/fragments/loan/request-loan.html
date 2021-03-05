@@ -28,20 +28,24 @@
                     <div>
                         <div th:if="${message}" th:text="${message}"class="alert alert-primary" role="alert"></div>
                         <div th:if="${nullGuarantors}" th:text="${nullGuarantors}" class="alert alert-danger" role="alert"></div>
-                        <table th:if="${members}" th:each="member : ${members}">
+
+                        <!--
+                            -A table with a list of potential guarantors to be implemented
+                        <table th:if="${members}">
                             <thead>
                                 <tr>Username</tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr th:each="member : ${members}">
                                     <td th:text="${member.user.getUsername()}"></td>
-                                    <form method="post">
-
+                                    <form th:action="@{/requestGuarantor}" th:object="${member}" method="post">
+                                        <input type="hidden" th:text="${member.userIntegrationsId}">
                                         <button class="btn btn-success" type="submit">Request</button>
                                     </form>
                                 </tr>
                             </tbody>
                         </table>
+                        -->
                         <p><a th:href="@{/userDashboard}">Dashboard</a></p>
                     </div>
 

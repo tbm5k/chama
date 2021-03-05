@@ -29,6 +29,7 @@ public class LoanController {
     @GetMapping("/requestLoan")
     public String getLoanPage(Model model){
         model.addAttribute("loan", new Loan());
+        model.addAttribute("guarantor", new Guarantor());
         return "fragments/Loan/request-loan";
     }
 
