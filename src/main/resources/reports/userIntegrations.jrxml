@@ -138,7 +138,7 @@
     </columnHeader>
     <detail>
         <band height="20">
-            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                 <reportElement style="Detail" positionType="Float" x="2" y="-100" width="138" height="20" uuid="3c674b3a-66f5-443b-93d6-1c9e3827eba9">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aad0fdd1-e746-4545-b21b-1050015b0ed1"/>
                 </reportElement>
@@ -147,7 +147,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{userIntegrationsId}]]></textFieldExpression>
             </textField>
-            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                 <reportElement style="Detail" positionType="Float" x="140" y="-100" width="138" height="20" uuid="ba64a152-3b5a-4840-808f-2f4888503a80">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6d8f4d9-9679-47e5-a93d-208c98f61315"/>
                 </reportElement>
@@ -156,7 +156,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{user.firstName}]]></textFieldExpression>
             </textField>
-            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                 <reportElement style="Detail" positionType="Float" x="278" y="-100" width="138" height="20" uuid="202c8f0c-f7cb-4cae-8b60-81c4ea336dd3">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b2a022b2-8b6e-4393-9bf6-0b941fd58705"/>
                 </reportElement>
@@ -165,7 +165,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{user.lastName}]]></textFieldExpression>
             </textField>
-            <textField textAdjust="StretchHeight" isBlankWhenNull="true">
+            <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                 <reportElement style="Detail" positionType="Float" x="416" y="-100" width="138" height="20" uuid="09e234ba-b0f4-43be-975b-0c2aa7681e1a">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="feec1312-0e6c-48f9-9ef5-f13341e6a3fc"/>
                 </reportElement>
