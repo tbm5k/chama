@@ -5,10 +5,8 @@ import com.chama.app.models.Invite;
 import com.chama.app.models.MemberContribution;
 import com.chama.app.models.Sequence;
 import com.chama.app.repository.ChamaRepo;
-import com.chama.app.services.ChamaService;
-import com.chama.app.services.ContributionService;
-import com.chama.app.services.LoanService;
-import com.chama.app.services.SequenceService;
+import com.chama.app.services.*;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +31,8 @@ public class ChamaController {
     LoanService loanService;
     @Autowired
     ContributionService contributionService;
+    @Autowired
+    ReportService reportService;
 
     @GetMapping("/chama")
     public String createChamaTemplate(Model model){
@@ -74,5 +75,11 @@ public class ChamaController {
             model.addAttribute("success", "Chama created!");
             return "redirect:chamaDashboard";
         }
+    }
+
+    @GetMapping("/report")
+    public String generateReport() throws FileNotFoundException, JRException {
+        reportService.exportReport(2);
+        return "Report downloaded";
     }
 }
