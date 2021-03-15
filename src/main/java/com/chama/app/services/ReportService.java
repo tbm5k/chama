@@ -29,7 +29,7 @@ public class ReportService {
         map.put("createdBy", "Chama");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map,dataSource);
 
-        JasperExportManager.exportReportToPdf(jasperPrint);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\tbm5k\\Downloads\\members.pdf");
     }
 
 }

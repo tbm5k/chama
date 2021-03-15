@@ -80,6 +80,6 @@ public class ChamaController {
     @GetMapping("/report")
     public String generateReport() throws FileNotFoundException, JRException {
         reportService.exportReport(2);
-        return "Report downloaded";
+        return "redirect:chamaDashboard";
     }
 }
