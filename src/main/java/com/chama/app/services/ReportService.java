@@ -19,7 +19,8 @@ public class ReportService {
     @Autowired
     UserIntegrationsService userIntegrationsService;
 
-    public void exportReport(int chamaId) throws JRException, FileNotFoundException {
+    public void exportReport(int chamaId, String reportName) throws JRException, FileNotFoundException {
+
         List<UserIntegrations> members = userIntegrationsService.getChamaMembers(chamaId);
 
         File file = ResourceUtils.getFile("classpath:reports/userIntegrations.jrxml");
@@ -29,7 +30,11 @@ public class ReportService {
         map.put("createdBy", "Chama");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map,dataSource);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\tbm5k\\Downloads\\members.pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\tbm5k\\Downloads\\" + createFileName(reportName));
+    }
+
+    public String createFileName(String name){
+        return name.concat(".pdf");
     }
 
 }
