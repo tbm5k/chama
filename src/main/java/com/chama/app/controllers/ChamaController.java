@@ -31,8 +31,6 @@ public class ChamaController {
     LoanService loanService;
     @Autowired
     ContributionService contributionService;
-    @Autowired
-    ReportService reportService;
 
     @GetMapping("/chama")
     public String createChamaTemplate(Model model){
@@ -75,11 +73,5 @@ public class ChamaController {
             model.addAttribute("success", "Chama created!");
             return "redirect:chamaDashboard";
         }
-    }
-
-    @GetMapping("/report")
-    public String generateReport() throws FileNotFoundException, JRException {
-        reportService.exportReport(2);
-        return "redirect:chamaDashboard";
     }
 }
