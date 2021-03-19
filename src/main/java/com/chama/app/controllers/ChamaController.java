@@ -42,7 +42,7 @@ public class ChamaController {
     public String chamaDashboard(Model model){
         int chamaId = 2;//chama id from the session
         model.addAttribute("invite", new Invite());
-        model.addAttribute("loans", loanService.getLoanRequests(chamaId));
+        model.addAttribute("loans", loanService.getLoans(chamaId));
 
         List<MemberContribution> contributionList = contributionService.getMembersContributions(chamaId);
         List<MemberContribution> contributions = new ArrayList<>();
