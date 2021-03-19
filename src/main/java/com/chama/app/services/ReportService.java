@@ -23,12 +23,24 @@ public class ReportService {
 
         List<UserIntegrations> members = userIntegrationsService.getChamaMembers(chamaId);
 
-        File file = ResourceUtils.getFile("classpath:reports/userIntegrations.jrxml");
+        File file = null;
+
+        switch (reportName){
+            case "members":
+                file = ResourceUtils.getFile("classpath:reports/userIntegrations.jrxml");
+                break;
+            case "loans":
+                file = ResourceUtils.getFile("classpath:reports/loans.jrxml");
+                break;
+            case "contributions":
+                file = ResourceUtils.getFile("classpath:reports/contributions.jrxml");
+        }
+
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(members);
         Map<String, Object> map = new HashMap<>();
         map.put("createdBy", "Chama");
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map,dataSource);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, dataSource);
 
         JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\tbm5k\\Downloads\\" + createFileName(reportName));
     }
