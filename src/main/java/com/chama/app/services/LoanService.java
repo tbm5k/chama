@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LoanService {
@@ -19,7 +18,7 @@ public class LoanService {
         loanRepo.save(loan);
     }
 
-    public List<Loan> getLoanRequests(int chamaId) {
+    public List<Loan> getLoans(int chamaId) {
         List<Loan> loans = (List<Loan>) loanRepo.findAll();
         List<Loan> loanList = new ArrayList<>();
         for(Loan loan : loans){
