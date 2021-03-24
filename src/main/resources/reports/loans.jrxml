@@ -56,16 +56,18 @@
             <![CDATA[]]>
         </queryString>
     </subDataset>
-    <field name="Loan id" class="java.lang.Integer">
+    <field name="loanId" class="java.lang.Integer">
     </field>
-    <field name="Username" class="java.lang.String">
+    <field name="member.user.username" class="java.lang.String">
     </field>
-    <field name="Amount" class="java.lang.Integer">
+    <field name="amount" class="java.lang.Integer">
     </field>
-    <field name="Repayment" class="java.sql.Date">
+    <field name="loanPeriod" class="java.sql.Date">
     </field>
-    <field name="Guarantors" class="java.util.List">
+    <!--
+    <field name="guarantors" class="java.util.List">
     </field>
+    -->
     <title>
         <band height="196" splitType="Stretch">
             <line>
@@ -135,6 +137,7 @@
                 </textElement>
                 <text><![CDATA[Repayment]]></text>
             </staticText>
+            <!--
             <staticText>
                 <reportElement style="Column header" positionType="Float" x="444" y="-140" width="111" height="20" forecolor="#000000" uuid="37eb627f-dd82-4b25-a23f-3f9d45c7dd29">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e2cfeaa-a890-4544-8310-b7ac4935815d"/>
@@ -144,6 +147,7 @@
                 </textElement>
                 <text><![CDATA[Guarantors]]></text>
             </staticText>
+            -->
         </band>
     </columnHeader>
     <detail>
@@ -184,6 +188,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{loanPeriod}]]></textFieldExpression>
             </textField>
+            <!--
             <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                 <reportElement style="Detail" positionType="Float" x="444" y="-140" width="111" height="20" uuid="12efd94b-f800-4fb5-863c-f4752bbe9bef">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e2cfeaa-a890-4544-8310-b7ac4935815d"/>
@@ -193,6 +198,7 @@
                 </textElement>
                 <textFieldExpression><![CDATA[$F{guarantors}]]></textFieldExpression>
             </textField>
+            -->
         </band>
     </detail>
     <lastPageFooter>
