@@ -56,17 +56,17 @@
             <![CDATA[]]>
         </queryString>
     </subDataset>
-    <field name="Contribution id" class="java.lang.Integer">
+    <field name="memberContributionId" class="java.lang.Integer">
     </field>
-    <field name="Username" class="java.lang.String">
+    <field name="member.user.username" class="java.lang.String">
     </field>
-    <field name="Amount" class="java.lang.Integer">
+    <field name="amount" class="java.lang.Integer">
     </field>
-    <field name="Month" class="java.sql.Date">
+    <field name="date" class="java.sql.Date">
     </field>
-    <field name="Receipt No" class="java.lang.String">
+    <field name="receiptNumber" class="java.lang.String">
     </field>
-    <field name="Receipt Date" class="java.sql.Date">
+    <field name="receiptDate" class="java.sql.Date">
     </field>
     <title>
         <band height="196" splitType="Stretch">
