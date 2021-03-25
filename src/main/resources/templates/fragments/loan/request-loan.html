@@ -13,7 +13,7 @@
     <body>
         <div layout:fragment="content">
             <h3>Request Loan</h3>
-            <div>
+            <div class="loanRequestForm">
                 <form th:object="${loan}" th:action="@{/requestLoan}" method="post" style="width:350px;" class="container border rounded px-5 py-3">
 
                     <div class="form-group">
@@ -50,6 +50,22 @@
                     </div>
 
                 </form>
+            </div>
+            <div class="guarantors">
+                <table class="guarantorList">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="">
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
