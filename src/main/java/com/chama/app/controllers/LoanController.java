@@ -25,11 +25,14 @@ public class LoanController {
     ReceiptService receiptService;
     @Autowired
     ContributionService contributionService;
+    @Autowired
+    GuarantorService guarantorService;
 
     @GetMapping("/requestLoan")
     public String getLoanPage(Model model){
         model.addAttribute("loan", new Loan());
         model.addAttribute("guarantor", new Guarantor());
+        model.addAttribute("guarantorList", guarantorService.getGuarantors());
         return "fragments/Loan/request-loan";
     }
 
