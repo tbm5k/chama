@@ -52,7 +52,7 @@
                 </form>
             </div>
             <div class="guarantors">
-                <table class="guarantorList">
+                <table>
                     <thead>
                         <tr>
                             <th>Username</th>
@@ -60,9 +60,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="">
-                            <td></td>
-                            <td></td>
+                        <tr th:if="${guarantorList.empty}">
+                            <p>No guarantors</p>
+                        </tr>
+                        <tr th:each="guarantor : ${guarantorList}">
+                            <td th:text="${guarantor.guarantor.user.username}"></td>
+                            <td th:text="${guarantor.amount}"></td>
                         </tr>
                     </tbody>
                 </table>

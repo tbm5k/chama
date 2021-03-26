@@ -32,7 +32,7 @@ public class LoanController {
     public String getLoanPage(Model model){
         model.addAttribute("loan", new Loan());
         model.addAttribute("guarantor", new Guarantor());
-        model.addAttribute("guarantorList", guarantorService.getGuarantors());
+        model.addAttribute("guarantorList", guarantorService.getGuarantors(31));
         return "fragments/Loan/request-loan";
     }
 
